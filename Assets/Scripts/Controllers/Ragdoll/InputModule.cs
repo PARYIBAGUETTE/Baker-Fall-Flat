@@ -65,10 +65,6 @@ namespace ActiveRagdoll
         void Update()
         {
             UpdateOnFloor();
-
-            Debug.Log(
-                "Check : " + _activeRagdoll.GetPhysicalBone(HumanBodyBones.RightFoot).position.x
-            );
         }
 
         public delegate void onFloorChangedDelegate(bool onFloor);
