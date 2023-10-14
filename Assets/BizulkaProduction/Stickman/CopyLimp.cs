@@ -12,17 +12,17 @@ public class CopyLimp : MonoBehaviour
 
     private void Awake()
     {
-        this.joint = GetComponent<ConfigurableJoint>();
-        this.targetInitRot = targetLimb.transform.localRotation;
+        joint = GetComponent<ConfigurableJoint>();
+        targetInitRot = targetLimb.transform.localRotation;
     }
 
     private void FixedUpdate()
     {
-            
+        joint.targetRotation = CopyRotation();
     }
 
     private Quaternion CopyRotation()
     {
-        return Quaternion.Inverse(this.targetLimb.localRotation) * this.targetInitRot;
+        return Quaternion.Inverse(this.targetLimb.localRotation) * targetInitRot;
     }
 }
