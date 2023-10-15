@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    public static ItemObject instance;
+    [SerializeField] private ItemSO itemSO;
 
     private void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ItemManager.instance.AddItem(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    //해당 아이템을 잡았을 때 수행할 내용
+    public void OnPickUp()
     {
-        
+
     }
 }
