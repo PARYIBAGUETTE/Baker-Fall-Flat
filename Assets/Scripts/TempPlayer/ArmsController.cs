@@ -9,8 +9,6 @@ public class ArmsController : MonoBehaviour
     private PlayerInputAction.PlayerActions playerAction;
 
     private Animator animator;
-    [SerializeField] private Rigidbody leftArm;
-    [SerializeField] private Rigidbody rightArm;
     [SerializeField] private GrabHandler leftGrab;
     [SerializeField] private GrabHandler rightGrab;
 

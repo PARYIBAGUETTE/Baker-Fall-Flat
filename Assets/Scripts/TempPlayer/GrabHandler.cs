@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GrabHandler : MonoBehaviour
 {
-    private Transform grabObj;
+    [SerializeField] private HingeJoint joint;
+    private Rigidbody grabObj;
     [SerializeField] private Collider coll;
 
     public void StartGrabAction()
@@ -14,26 +15,15 @@ public class GrabHandler : MonoBehaviour
 
     public void EndGrabAction()
     {
-        StopCoroutine(nameof(MoveGrabObj));
         grabObj = null;
+        joint.connectedBody = null;
         coll.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        grabObj = collision.gameObject.transform;
-        StartCoroutine(nameof(MoveGrabObj));
+        collision.gameObject.TryGetComponent(out grabObj);
+        joint.connectedBody = grabObj;
     }
-
-    IEnumerator MoveGrabObj()
-    {
-        while (grabObj != null)
-        {
-            grabObj.transform.Translate(transform.position);
-            yield return null;
-            //
-        }
-    }
-
 
 }
