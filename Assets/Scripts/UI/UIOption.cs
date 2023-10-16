@@ -11,7 +11,9 @@ public class UIOption : MonoBehaviour
     private void Awake()
     {
         btnAudio.onClick.AddListener(Open_Audio);
+        btnAudio.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnBack.onClick.AddListener(Close_Option);
+        btnBack.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
     }
 
     private void Open_Audio()
