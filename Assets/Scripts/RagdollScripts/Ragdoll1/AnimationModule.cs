@@ -87,7 +87,7 @@ namespace ActiveRagdoll
             {
                 ConfigurableJointExtensions.SetTargetRotationLocal(
                     _joints[i],
-                    _animatedBones[i + 1].localRotation,
+                    _animatedBones[i].localRotation,
                     _initialJointsRotation[i]
                 );
             }

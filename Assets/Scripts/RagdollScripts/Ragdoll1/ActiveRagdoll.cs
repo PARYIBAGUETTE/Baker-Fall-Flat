@@ -114,6 +114,11 @@ namespace ActiveRagdoll
                 AnimatedBones = _animatedTorso?.GetComponentsInChildren<Transform>();
             if (Joints == null)
                 Joints = _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>();
+
+            Debug.Log(
+                "Joints Name : " + _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>()
+            );
+
             if (Rigidbodies == null)
                 Rigidbodies = _physicalTorso?.GetComponentsInChildren<Rigidbody>();
 
@@ -214,7 +219,7 @@ namespace ActiveRagdoll
 
         private void FixedUpdate()
         {
-            SyncAnimatedBody();
+            // SyncAnimatedBody();
         }
 
         /// <summary> 실제 루트와 일치하도록 애니메이션 본체의 루트의 회전 및 위치를 업데이트합니다.</summary>
