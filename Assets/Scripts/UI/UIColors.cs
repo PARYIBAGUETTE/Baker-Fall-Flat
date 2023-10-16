@@ -10,6 +10,7 @@ public class UIColors : MonoBehaviour
     private void Awake()
     {
         btnBack.onClick.AddListener(Close_Colors);
+        btnBack.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
     }
 
     private void Close_Colors()

@@ -11,7 +11,9 @@ public class UICustomize : MonoBehaviour
     private void Awake()
     {
         btnColors.onClick.AddListener(Open_Colors);
+        btnColors.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnBack.onClick.AddListener(Close_Customize);
+        btnBack.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
     }
 
     private void Open_Colors()

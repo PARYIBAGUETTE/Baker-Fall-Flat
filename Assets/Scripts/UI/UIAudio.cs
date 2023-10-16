@@ -10,6 +10,7 @@ public class UIAudio : MonoBehaviour
     private void Awake()
     {
         btnBack.onClick.AddListener(Close_Audio);
+        btnBack.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
     }
 
     private void Close_Audio()

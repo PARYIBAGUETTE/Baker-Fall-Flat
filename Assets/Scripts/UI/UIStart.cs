@@ -13,8 +13,11 @@ public class UIStart : MonoBehaviour
     private void Awake()
     {
         btnStart.onClick.AddListener(GameStart);
+        btnStart.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnOption.onClick.AddListener(Open_Option);
+        btnOption.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnCustomize.onClick.AddListener(Open_Customize);
+        btnCustomize.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
     }
 
     private void GameStart()
