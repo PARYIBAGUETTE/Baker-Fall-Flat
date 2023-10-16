@@ -33,7 +33,7 @@ Transform:
   - {fileID: 4600085462608518453}
   - {fileID: 7922321178348716287}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4668236019856539263
 MonoBehaviour:
@@ -1318,7 +1318,7 @@ GameObject:
   - component: {fileID: 2863418772113278401}
   - component: {fileID: 4229061511558379164}
   m_Layer: 0
-  m_Name: Stickman_heads_sphere
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1347,7 +1347,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2505418554764613764}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -3383,7 +3383,7 @@ GameObject:
   - component: {fileID: 3386501297047710353}
   - component: {fileID: 3216285409447178722}
   m_Layer: 6
-  m_Name: Stickman_heads_sphere
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

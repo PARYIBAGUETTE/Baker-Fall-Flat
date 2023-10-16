@@ -1062,6 +1062,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1556085297 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1418284444124481342, guid: 48cb383ca358a9c44a7fce412122b4ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689077452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1689077452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1080,6 +1086,31 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
+        type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7301974005874040883, guid: 48cb383ca358a9c44a7fce412122b4ba,
         type: 3}
       propertyPath: m_RootOrder
@@ -1442,8 +1473,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 1556085297}
+  m_Follow: {fileID: 1556085297}
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 10
