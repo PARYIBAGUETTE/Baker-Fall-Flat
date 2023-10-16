@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlateSO
   m_EditorClassIdentifier: 
   itemType: 1
-  weight: 0
+  weight: 1

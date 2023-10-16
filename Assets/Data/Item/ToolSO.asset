@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ToolSO
   m_EditorClassIdentifier: 
   itemType: 2
-  weight: 0
+  weight: 1

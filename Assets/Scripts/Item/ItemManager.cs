@@ -12,6 +12,7 @@ public class ItemManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            items = new List<ItemObject>();
         }
     }
 
@@ -23,14 +24,13 @@ public class ItemManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void AddItem(ItemObject item)
     {
         items.Add(item);
+    }
+
+    public void RemoveItem(ItemObject item)
+    {
+        items.Remove(item);
     }
 }

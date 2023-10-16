@@ -7,7 +7,6 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private ItemSO itemSO;
     [SerializeField] private bool isGrabbed;
     private Rigidbody rigidbody;
-
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -16,7 +15,6 @@ public class ItemObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ItemManager.instance.AddItem(this);
     }
 
     public bool IsGrabbed
