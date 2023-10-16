@@ -92,20 +92,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //private void LookCameraDir()
-    //{
-    //    Vector3 temp = cam.transform.position - hipjoint.transform.position;
-    //    temp.y = 0;
-
-    //    hipjoint.transform.LookAt(temp);
-    //}
+    private void LookCameraDir()
+    {
+        Vector3 temp = cam.transform.position - hipjoint.transform.position;
+        temp.y = 0;
+        Quaternion dir = Quaternion.LookRotation(temp);
+        hipjoint.transform.rotation = dir;
+        hipjoint.transform.Rotate(Vector3.up * 90);
+    }
 
 
     private void FixedUpdate()
     {
-        //hipjoint.transform.rotation
 
-        //LookCameraDir();
+        LookCameraDir();
         MovePlayer();
 
         //юс╫ц
