@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Item_Plate : ItemObject
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        ItemManager.instance.AddItem(gameObject.GetComponent<Item_Plate>());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
