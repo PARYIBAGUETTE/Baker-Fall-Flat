@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed = 10;
     [SerializeField] private Vector3 moveDir;
-
+    [SerializeField] private Vector3 forwardDir;
 
 
     private void Awake()
@@ -28,11 +28,12 @@ public class PlayerController : MonoBehaviour
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
+        Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
         //
 
-        playerAction.Move.started += GetMoveDir;
-        playerAction.Move.performed += GetMoveDir;
-        playerAction.Move.canceled += GetMoveDir;
+        playerAction.Move.started += GetMoveMentDir;
+        playerAction.Move.performed += GetMoveMentDir;
+        playerAction.Move.canceled += GetMoveMentDir;
     }
 
 
@@ -42,12 +43,30 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void GetMoveDir(InputAction.CallbackContext context)
+    private void FixedUpdate()
+    {
+        SetDirFromCamera();
+        LookCameraDir();
+        MovePlayer();
+
+        //임시
+        if (Input.GetKey(KeyCode.Space))
+        {
+            hipRigid.AddForce(Vector3.up * 200);
+        }
+    }
+
+    // Move 입력시 호출
+    public void GetMoveMentDir(InputAction.CallbackContext context)
     {
         moveDir = context.ReadValue<Vector2>();
         moveDir.z = moveDir.y;
         moveDir.y = 0;
+        moveDir.Normalize();
+    }
 
+    public void SetDirFromCamera()
+    {
         Vector3 forword = cam.transform.forward;
         Vector3 right = cam.transform.right;
         forword.y = 0;
@@ -55,7 +74,17 @@ public class PlayerController : MonoBehaviour
         forword.Normalize();
         right.Normalize();
 
-        moveDir =  forword * moveDir.z + right * moveDir.x;
+        forwardDir = forword * moveDir.z + right * moveDir.x;
+    }
+
+
+    private void LookCameraDir()
+    {
+        Vector3 temp = cam.transform.position - hipjoint.transform.position;
+        temp.y = 0;
+        Quaternion dir = Quaternion.LookRotation(temp);
+        hipjoint.transform.rotation = dir;
+        hipjoint.transform.Rotate(Vector3.up * 90);
     }
 
 
@@ -69,50 +98,16 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isLeftSide", false);
             return;
         }
-
-        if (moveDir.x == +1)
-        {
-            animator.SetBool("isRightSide", true);
-            return;
-        }
-        if (moveDir.x == -1)
-        {
-            animator.SetBool("isLeftSide", true);
-            return;
-        }
-
-        if (moveDir.z > 0)
+        else if (moveDir.z > 0)
             animator.SetBool("isForward", true);
+        else if (moveDir.x == +1)
+            animator.SetBool("isRightSide", true);
+        else if (moveDir.x == -1)
+            animator.SetBool("isLeftSide", true);
         else if (moveDir.z < 0)
             animator.SetBool("isBackward", true);
 
-        if (hipRigid.velocity.magnitude < 6)
-        {
-            hipRigid.AddForce(moveDir * speed);
-        }
+        hipRigid.AddForce(Vector3.up * 30);
+        hipRigid.AddForce(forwardDir * speed);
     }
-
-    private void LookCameraDir()
-    {
-        Vector3 temp = cam.transform.position - hipjoint.transform.position;
-        temp.y = 0;
-        Quaternion dir = Quaternion.LookRotation(temp);
-        hipjoint.transform.rotation = dir;
-        hipjoint.transform.Rotate(Vector3.up * 90);
-    }
-
-
-    private void FixedUpdate()
-    {
-
-        LookCameraDir();
-        MovePlayer();
-
-        //임시
-        if (Input.GetKey(KeyCode.Space))
-        {
-            hipRigid.AddForce(Vector3.up * 200);
-        }
-    }
-
 }

@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class ArmsController : MonoBehaviour
 {
-    private PlayerInputAction playerInputAction;
     private PlayerInputAction.PlayerActions playerAction;
 
     private Animator animator;
@@ -16,7 +15,6 @@ public class ArmsController : MonoBehaviour
     public void Init(PlayerController controller)
     {
         animator = controller.Animator;
-        playerInputAction = controller.PlayerInputAction;
         playerAction = controller.PlayerAction;
 
         DelInputEvent();
@@ -43,28 +41,24 @@ public class ArmsController : MonoBehaviour
 
     public void LeftClickDown(InputAction.CallbackContext context)
     {
-        Debug.Log("다운");
         animator.SetBool("isUpLeftArm", true);
         leftGrab.StartGrabAction();
     }
 
     public void LeftClickUp(InputAction.CallbackContext context)
     {
-        Debug.Log("업");
         animator.SetBool("isUpLeftArm", false);
         leftGrab.EndGrabAction();
     }
 
     public void RightClickDown(InputAction.CallbackContext context)
     {
-        Debug.Log("다운");
         animator.SetBool("IsUpRightArm", true);
         rightGrab.StartGrabAction();
     }
 
     public void RightClickUp(InputAction.CallbackContext context)
     {
-        Debug.Log("업");
         animator.SetBool("IsUpRightArm", false);
         rightGrab.EndGrabAction();
     }
