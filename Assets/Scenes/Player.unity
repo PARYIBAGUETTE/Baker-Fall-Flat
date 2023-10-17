@@ -1086,31 +1086,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 330585545}
-    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
-        type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
-        type: 3}
-      propertyPath: m_LightProbeUsage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
-        type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
-        type: 3}
-      propertyPath: m_UpdateWhenOffscreen
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229061511558379164, guid: 48cb383ca358a9c44a7fce412122b4ba,
-        type: 3}
-      propertyPath: m_SkinnedMotionVectors
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7301974005874040883, guid: 48cb383ca358a9c44a7fce412122b4ba,
         type: 3}
       propertyPath: m_RootOrder
@@ -1165,6 +1140,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922321178348716287, guid: 48cb383ca358a9c44a7fce412122b4ba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
