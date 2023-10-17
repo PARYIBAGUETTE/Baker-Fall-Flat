@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3493067131689510047}
   - component: {fileID: 3938310915138051694}
   - component: {fileID: 4557549407663625175}
+  - component: {fileID: 4608181095497139552}
   m_Layer: 0
   m_Name: PressurePlate
   m_TagString: Untagged
@@ -99,12 +100,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4608181095497139552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394920723966998353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8d72e2d215dd547b64eb81667f108c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDown: 0
 --- !u!1 &4517759138573575046
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7854539638698355689}
-  - component: {fileID: 2334195438644818458}
   m_Layer: 0
   m_Name: MapObject_PressurePlate
   m_TagString: Untagged
@@ -138,15 +151,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2334195438644818458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517759138573575046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8d72e2d215dd547b64eb81667f108c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
