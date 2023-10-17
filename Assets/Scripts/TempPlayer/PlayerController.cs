@@ -107,6 +107,8 @@ public class PlayerController : MonoBehaviour
         else if (moveDir.z < 0)
             animator.SetBool("isBackward", true);
 
+
+        Debug.Log(moveDir);
         hipRigid.AddForce(Vector3.up * 30);
         hipRigid.AddForce(forwardDir * speed);
     }
