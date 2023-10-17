@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlate : MonoBehaviour
+public class PressurePlate : MonoBehaviour, ITriggerObject
 {
     [SerializeField] private bool isDown = false;
 
@@ -12,6 +12,11 @@ public class PressurePlate : MonoBehaviour
     void Start()
     {
         isDown = false;
+    }
+
+    void ITriggerObject.Activate()
+    {
+
     }
 
     private void OnTriggerEnter(Collider other)
