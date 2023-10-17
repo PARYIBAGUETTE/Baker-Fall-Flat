@@ -21,13 +21,23 @@ public class SlideDoor : MonoBehaviour, IWorkingObject
         }
     }
 
-    void IWorkingObject.Work()
+    void IWorkingObject.DoWork()
     {
         OpenDoor();
     }
 
+    void IWorkingObject.UndoWork()
+    {
+        CloseDoor();
+    }
+
     private void OpenDoor()
     {
-        
+        //문 열리는 애니메이션 실행
+    }
+
+    private void CloseDoor()
+    {
+
     }
 }

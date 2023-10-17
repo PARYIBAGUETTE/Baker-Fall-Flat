@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IWorkingObject 
 {
-    public void Work();
+    public void DoWork();
+    public void UndoWork();
 }

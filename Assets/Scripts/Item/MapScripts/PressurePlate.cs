@@ -19,6 +19,11 @@ public class PressurePlate : MonoBehaviour, ITriggerObject
 
     }
 
+    void ITriggerObject.InActivate()
+    {
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         isDown = true;    

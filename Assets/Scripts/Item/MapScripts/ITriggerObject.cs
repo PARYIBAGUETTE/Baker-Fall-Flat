@@ -5,4 +5,6 @@ using UnityEngine;
 public interface ITriggerObject 
 {
     public void Activate();
+
+    public void InActivate();
 }
