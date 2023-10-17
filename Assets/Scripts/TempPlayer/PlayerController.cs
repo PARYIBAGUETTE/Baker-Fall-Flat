@@ -9,17 +9,20 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Camera cam;
     [SerializeField] private ArmsController armsController;
+    [SerializeField] private JumpHandler jumpHandler;
     [SerializeField] private ConfigurableJoint hipjoint;
     [SerializeField] private Rigidbody hipRigid;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private float speed;
+    [SerializeField] private Vector3 moveDir;
+    [SerializeField] private Vector3 forwardDir;
+    private bool isGround = true;
+
     public PlayerInputAction PlayerInputAction { get { return playerInputAction; } private set { playerInputAction = value; } }
     public PlayerInputAction.PlayerActions PlayerAction { get { return playerAction; } private set { playerAction = value; } }
     public Animator Animator { get { return animator; } }
-
-    [SerializeField] private float speed = 10;
-    [SerializeField] private Vector3 moveDir;
-    [SerializeField] private Vector3 forwardDir;
+    public bool IsGround { get { return isGround; } set { isGround = value; } }
 
 
     private void Awake()
@@ -28,18 +31,22 @@ public class PlayerController : MonoBehaviour
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
-        Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
         //
 
         playerAction.Move.started += GetMoveMentDir;
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
+
+        playerAction.Jump.started += JumpPlayer;
     }
 
 
     private void Start()
     {
         armsController.Init(this);
+        jumpHandler.Init(this);
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
@@ -48,12 +55,6 @@ public class PlayerController : MonoBehaviour
         SetDirFromCamera();
         LookCameraDir();
         MovePlayer();
-
-        //임시
-        if (Input.GetKey(KeyCode.Space))
-        {
-            hipRigid.AddForce(Vector3.up * 300);
-        }
     }
 
     // Move 입력시 호출
@@ -87,6 +88,15 @@ public class PlayerController : MonoBehaviour
         hipjoint.transform.Rotate(Vector3.up * 90);
     }
 
+    public void JumpPlayer(InputAction.CallbackContext context)
+    {
+        if (isGround == false)
+            return;
+
+        hipRigid.AddForce(Vector3.up * 8000);
+        IsGround = false;
+    }
+
 
     public void MovePlayer()
     {
@@ -107,7 +117,7 @@ public class PlayerController : MonoBehaviour
         else if (moveDir.z < 0)
             animator.SetBool("isBackward", true);
 
-        hipRigid.AddForce(Vector3.up * 30);
-        hipRigid.AddForce(forwardDir * speed);
+        hipRigid.AddForce(Vector3.up * 40);
+        hipRigid.AddForce(forwardDir * speed * Time.fixedDeltaTime);
     }
 }
