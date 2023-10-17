@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         //юс╫ц
         if (Input.GetKey(KeyCode.Space))
         {
-            hipRigid.AddForce(Vector3.up * 200);
+            hipRigid.AddForce(Vector3.up * 300);
         }
     }
 
