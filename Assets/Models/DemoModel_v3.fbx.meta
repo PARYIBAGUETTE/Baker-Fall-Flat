@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: fa7f36c71b9e8fa4798df3a931c2fd92
+guid: cc4b706d0e3ba4e0d8052860889df4ae
 ModelImporter:
   serializedVersion: 22200
+<<<<<<< HEAD:Assets/Externals/BizulkaProduction/Stickman/Models/Stickman_heads_sphere.fbx.meta
   internalIDToNameTable:
   - first:
       1: 100000
@@ -210,6 +211,12 @@ ModelImporter:
   externalObjects: {}
   materials:
     materialImportMode: 1
+=======
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+>>>>>>> 920e5fbfaadd247ff47470093f7ae1880fb357d5:Assets/Models/DemoModel_v3.fbx.meta
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -228,7 +235,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -236,7 +243,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -249,8 +256,13 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+<<<<<<< HEAD:Assets/Externals/BizulkaProduction/Stickman/Models/Stickman_heads_sphere.fbx.meta
     nodeNameCollisionStrategy: 0
     fileIdsGeneration: 1
+=======
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+>>>>>>> 920e5fbfaadd247ff47470093f7ae1880fb357d5:Assets/Models/DemoModel_v3.fbx.meta
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -267,7 +279,11 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+<<<<<<< HEAD:Assets/Externals/BizulkaProduction/Stickman/Models/Stickman_heads_sphere.fbx.meta
     secondaryUVMarginMethod: 0
+=======
+    secondaryUVMarginMethod: 1
+>>>>>>> 920e5fbfaadd247ff47470093f7ae1880fb357d5:Assets/Models/DemoModel_v3.fbx.meta
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
@@ -285,6 +301,7 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
+<<<<<<< HEAD:Assets/Externals/BizulkaProduction/Stickman/Models/Stickman_heads_sphere.fbx.meta
     human:
     - boneName: pelvis
       humanName: Hips
@@ -671,6 +688,10 @@ ModelImporter:
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
       scale: {x: 1, y: 1, z: 1}
+=======
+    human: []
+    skeleton: []
+>>>>>>> 920e5fbfaadd247ff47470093f7ae1880fb357d5:Assets/Models/DemoModel_v3.fbx.meta
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -681,16 +702,25 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
+<<<<<<< HEAD:Assets/Externals/BizulkaProduction/Stickman/Models/Stickman_heads_sphere.fbx.meta
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
+=======
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+>>>>>>> 920e5fbfaadd247ff47470093f7ae1880fb357d5:Assets/Models/DemoModel_v3.fbx.meta
   additionalBone: 0
   userData: 
   assetBundleName: 
