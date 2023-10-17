@@ -1,4 +1,4 @@
-
+Ôªø
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,60 +9,99 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Camera cam;
     [SerializeField] private ArmsController armsController;
+    [SerializeField] private JumpHandler jumpHandler;
     [SerializeField] private ConfigurableJoint hipjoint;
     [SerializeField] private Rigidbody hipRigid;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private float speed;
+    [SerializeField] private Vector3 moveDir;
+    [SerializeField] private Vector3 forwardDir;
+    private bool isGround = true;
+
     public PlayerInputAction PlayerInputAction { get { return playerInputAction; } private set { playerInputAction = value; } }
     public PlayerInputAction.PlayerActions PlayerAction { get { return playerAction; } private set { playerAction = value; } }
     public Animator Animator { get { return animator; } }
-
-    [SerializeField] private float speed = 10;
-    [SerializeField] private Vector3 moveDir;
-    [SerializeField] private Vector3 forwardDir;
+    public bool IsGround { get { return isGround; } set { isGround = value; } }
 
 
     private void Awake()
     {
-        // ¿”Ω√ «√∑π¿ÃæÓ ¿Œ«≤
+        // ÏûÑÏãú ÌîåÎ†àÏù¥Ïñ¥ Ïù∏Ìíã
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
-        Cursor.lockState = CursorLockMode.Locked; // ∏∂øÏΩ∫ ¿·±›
         //
 
         playerAction.Move.started += GetMoveMentDir;
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
+
     }
 
 
     private void Start()
     {
         armsController.Init(this);
+        //jumpHandler.Init(this);
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
     private void FixedUpdate()
     {
-        SetDirFromCamera();
         LookCameraDir();
+        SetDirFromCamera();
         MovePlayer();
 
-        //¿”Ω√
         if (Input.GetKey(KeyCode.Space))
         {
             hipRigid.AddForce(Vector3.up * 300);
         }
     }
 
-    // Move ¿‘∑¬Ω√ »£√‚
+    // Move ÏûÖÎ†•Ïãú Ìò∏Ï∂ú
     public void GetMoveMentDir(InputAction.CallbackContext context)
     {
         moveDir = context.ReadValue<Vector2>();
         moveDir.z = moveDir.y;
         moveDir.y = 0;
         moveDir.Normalize();
+
+        if (moveDir == Vector3.zero)
+        {
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+            return;
+        }
+        else if (moveDir.z > 0)
+        {
+            animator.SetBool("isForward", true);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+        }
+
+        else if (moveDir.x == +1)
+        {
+            animator.SetBool("isRightSide", true);
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+        }
+        else if (moveDir.x == -1)
+        {
+            animator.SetBool("isLeftSide", true);
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+        }
+        else if (moveDir.z < 0)
+        {
+            animator.SetBool("isBackward", true);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+        }
     }
 
     public void SetDirFromCamera()
@@ -73,8 +112,9 @@ public class PlayerController : MonoBehaviour
         right.y = 0;
         forword.Normalize();
         right.Normalize();
+        //Debug.Log(forwardDir);
 
-        forwardDir = forword * moveDir.z + right * moveDir.x;
+        forwardDir = forword * cam.transform.position.z + right * cam.transform.position.x;
     }
 
 
@@ -87,27 +127,19 @@ public class PlayerController : MonoBehaviour
         hipjoint.transform.Rotate(Vector3.up * 90);
     }
 
+    public void JumpPlayer(InputAction.CallbackContext context)
+    {
+        if (isGround == false)
+            return;
+
+        hipRigid.AddForce(Vector3.up * 8000);
+        IsGround = false;
+    }
+
 
     public void MovePlayer()
     {
-        if (moveDir == Vector3.zero)
-        {
-            animator.SetBool("isForward", false);
-            animator.SetBool("isBackward", false);
-            animator.SetBool("isRightSide", false);
-            animator.SetBool("isLeftSide", false);
-            return;
-        }
-        else if (moveDir.z > 0)
-            animator.SetBool("isForward", true);
-        else if (moveDir.x == +1)
-            animator.SetBool("isRightSide", true);
-        else if (moveDir.x == -1)
-            animator.SetBool("isLeftSide", true);
-        else if (moveDir.z < 0)
-            animator.SetBool("isBackward", true);
-
-        hipRigid.AddForce(Vector3.up * 30);
-        hipRigid.AddForce(forwardDir * speed);
+        hipRigid.AddForce(Vector3.up * 100);
+        hipRigid.AddForce(speed * Time.fixedDeltaTime * moveDir);
     }
 }
