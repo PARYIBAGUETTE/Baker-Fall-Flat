@@ -3,22 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ActiveRagdoll {
+namespace ActiveRagdoll
+{
     // Author: Sergio Abreu García | https://sergioabreu.me
 
     /// <summary>
     /// Helper class that contains a lot of necessary functionality to control the animator,
     /// and more especifically the IK.
     /// </summary>
-    [RequireComponent(typeof(Animator))]
-    public class AnimatorHelper : MonoBehaviour {
+
+    public class AnimatorHelper : MonoBehaviour
+    {
         private Animator _animator;
 
         // ----- Look -----
-        public enum LookMode {
+        public enum LookMode
+        {
             TARGET,
             POINT,
         }
+
         public LookMode CurrentLookMode { get; private set; }
         public Transform LookTarget { get; private set; }
         public Vector3 LookPoint { get; private set; }
@@ -40,8 +44,10 @@ namespace ActiveRagdoll {
         public float RightLegIKWeight { get; set; }
 
         // Values used for animating the transition between animation & IK
-        private float _currentLeftArmIKWeight = 0, _currentRightArmIKWeight = 0;
-        private float _currentLeftLegIKWeight = 0, _currentRightLegIKWeight = 0;
+        private float _currentLeftArmIKWeight = 0,
+            _currentRightArmIKWeight = 0;
+        private float _currentLeftLegIKWeight = 0,
+            _currentRightLegIKWeight = 0;
 
         /// <summary> How much the chest IK will influence the animation at its maximum </summary>
         public float ChestMaxLookWeight { get; set; } = 0.5f;
@@ -50,7 +56,8 @@ namespace ActiveRagdoll {
         public bool SmoothIKTransitions { get; set; } = true;
         public float IKTransitionsSpeed { get; set; } = 10;
 
-        void Awake() {
+        void Awake()
+        {
             _animator = GetComponent<Animator>();
 
             _targetsParent = new GameObject("IK Targets").transform;
@@ -71,17 +78,39 @@ namespace ActiveRagdoll {
             LeftFootTarget.parent = _targetsParent;
             RightFootTarget.parent = _targetsParent;
         }
-        private void Update() {
+
+        private void Update()
+        {
             UpdateIKTransitions();
         }
 
-        private void UpdateIKTransitions() {
-            if (SmoothIKTransitions) {
-                _currentLeftArmIKWeight = Mathf.Lerp(_currentLeftArmIKWeight, LeftArmIKWeight, Time.deltaTime * IKTransitionsSpeed);
-                _currentLeftLegIKWeight = Mathf.Lerp(_currentLeftLegIKWeight, LeftLegIKWeight, Time.deltaTime * IKTransitionsSpeed);
-                _currentRightArmIKWeight = Mathf.Lerp(_currentRightArmIKWeight, RightArmIKWeight, Time.deltaTime * IKTransitionsSpeed);
-                _currentRightLegIKWeight = Mathf.Lerp(_currentRightLegIKWeight, RightLegIKWeight, Time.deltaTime * IKTransitionsSpeed);
-            } else {
+        private void UpdateIKTransitions()
+        {
+            if (SmoothIKTransitions)
+            {
+                _currentLeftArmIKWeight = Mathf.Lerp(
+                    _currentLeftArmIKWeight,
+                    LeftArmIKWeight,
+                    Time.deltaTime * IKTransitionsSpeed
+                );
+                _currentLeftLegIKWeight = Mathf.Lerp(
+                    _currentLeftLegIKWeight,
+                    LeftLegIKWeight,
+                    Time.deltaTime * IKTransitionsSpeed
+                );
+                _currentRightArmIKWeight = Mathf.Lerp(
+                    _currentRightArmIKWeight,
+                    RightArmIKWeight,
+                    Time.deltaTime * IKTransitionsSpeed
+                );
+                _currentRightLegIKWeight = Mathf.Lerp(
+                    _currentRightLegIKWeight,
+                    RightLegIKWeight,
+                    Time.deltaTime * IKTransitionsSpeed
+                );
+            }
+            else
+            {
                 _currentLeftArmIKWeight = LeftArmIKWeight;
                 _currentLeftLegIKWeight = LeftLegIKWeight;
                 _currentRightArmIKWeight = RightArmIKWeight;
@@ -89,13 +118,22 @@ namespace ActiveRagdoll {
             }
         }
 
-        private void OnAnimatorIK(int layerIndex) {
+        private void OnAnimatorIK(int layerIndex)
+        {
             // Look
-            _animator.SetLookAtWeight(LookIKWeight, ((LeftArmIKWeight + RightArmIKWeight) / 2) * ChestMaxLookWeight, 1, 1, 0);
+            _animator.SetLookAtWeight(
+                LookIKWeight,
+                ((LeftArmIKWeight + RightArmIKWeight) / 2) * ChestMaxLookWeight,
+                1,
+                1,
+                0
+            );
 
             Vector3 lookPos = Vector3.zero;
-            if (CurrentLookMode == LookMode.TARGET) lookPos = LookTarget.position;
-            if (CurrentLookMode == LookMode.POINT) lookPos = LookPoint;
+            if (CurrentLookMode == LookMode.TARGET)
+                lookPos = LookTarget.position;
+            if (CurrentLookMode == LookMode.POINT)
+                lookPos = LookPoint;
 
             _animator.SetLookAtPosition(lookPos);
 
@@ -116,7 +154,7 @@ namespace ActiveRagdoll {
             _animator.SetIKPosition(AvatarIKGoal.RightHand, RightHandTarget.position);
             _animator.SetIKRotation(AvatarIKGoal.RightHand, RightHandTarget.rotation);
             _animator.SetIKHintPosition(AvatarIKHint.RightElbow, RightHandHint.position);
-            
+
             // Left leg
             _animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, _currentLeftLegIKWeight);
             _animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, _currentLeftLegIKWeight);
@@ -132,12 +170,14 @@ namespace ActiveRagdoll {
             _animator.SetIKRotation(AvatarIKGoal.RightFoot, RightFootTarget.rotation);
         }
 
-        public void LookAtTarget(Transform target) {
+        public void LookAtTarget(Transform target)
+        {
             LookTarget = target;
             CurrentLookMode = LookMode.TARGET;
         }
 
-        public void LookAtPoint(Vector3 point) {
+        public void LookAtPoint(Vector3 point)
+        {
             LookPoint = point;
             CurrentLookMode = LookMode.POINT;
         }

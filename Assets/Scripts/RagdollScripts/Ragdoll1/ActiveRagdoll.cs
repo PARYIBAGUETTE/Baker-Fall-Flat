@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace ActiveRagdoll
 {
-    [RequireComponent(typeof(InputModule))]
     public class ActiveRagdoll : MonoBehaviour
     {
         [Header("--- GENERAL ---")]
