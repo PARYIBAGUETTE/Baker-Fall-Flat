@@ -5,14 +5,19 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour
 {
     private Animator anim;
+    [SerializeField] private Animator animDoor;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(collision.gameObject.tag);
+        if (other.CompareTag("Player"))
+        {
+            anim.SetTrigger("DoPress");
+            animDoor.SetTrigger("DoOpen");
+        }
     }
 }
