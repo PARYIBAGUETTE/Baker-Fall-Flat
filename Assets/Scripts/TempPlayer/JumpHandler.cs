@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class JumpHandler : MonoBehaviour
     PlayerController controller;
 
 
-    // Á¡ÇÁÀÇ ½ÇÇàÀÌ ÀÌ»óÇÏ¸é ¿©±æ Ã¼Å©ÇØº¼ °Í
+    // ì í”„ì˜ ì‹¤í–‰ì´ ì´ìƒí•˜ë©´ ì—¬ê¸¸ ì²´í¬í•´ë³¼ ê²ƒ
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("Exit");

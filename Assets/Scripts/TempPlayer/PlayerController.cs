@@ -1,4 +1,4 @@
-
+Ôªø
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        // ¿”Ω√ «√∑π¿ÃæÓ ¿Œ«≤
+        // ÏûÑÏãú ÌîåÎ†àÏù¥Ïñ¥ Ïù∏Ìíã
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
@@ -37,14 +37,13 @@ public class PlayerController : MonoBehaviour
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
 
-        playerAction.Jump.started += JumpPlayer;
     }
 
 
     private void Start()
     {
         armsController.Init(this);
-        jumpHandler.Init(this);
+        //jumpHandler.Init(this);
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -52,18 +51,57 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SetDirFromCamera();
         LookCameraDir();
+        SetDirFromCamera();
         MovePlayer();
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            hipRigid.AddForce(Vector3.up * 300);
+        }
     }
 
-    // Move ¿‘∑¬Ω√ »£√‚
+    // Move ÏûÖÎ†•Ïãú Ìò∏Ï∂ú
     public void GetMoveMentDir(InputAction.CallbackContext context)
     {
         moveDir = context.ReadValue<Vector2>();
         moveDir.z = moveDir.y;
         moveDir.y = 0;
         moveDir.Normalize();
+
+        if (moveDir == Vector3.zero)
+        {
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+            return;
+        }
+        else if (moveDir.z > 0)
+        {
+            animator.SetBool("isForward", true);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+        }
+
+        else if (moveDir.x == +1)
+        {
+            animator.SetBool("isRightSide", true);
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+        }
+        else if (moveDir.x == -1)
+        {
+            animator.SetBool("isLeftSide", true);
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+        }
+        else if (moveDir.z < 0)
+        {
+            animator.SetBool("isBackward", true);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+        }
     }
 
     public void SetDirFromCamera()
@@ -74,8 +112,9 @@ public class PlayerController : MonoBehaviour
         right.y = 0;
         forword.Normalize();
         right.Normalize();
+        //Debug.Log(forwardDir);
 
-        forwardDir = forword * moveDir.z + right * moveDir.x;
+        forwardDir = forword * cam.transform.position.z + right * cam.transform.position.x;
     }
 
 
@@ -100,24 +139,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
-        if (moveDir == Vector3.zero)
-        {
-            animator.SetBool("isForward", false);
-            animator.SetBool("isBackward", false);
-            animator.SetBool("isRightSide", false);
-            animator.SetBool("isLeftSide", false);
-            return;
-        }
-        else if (moveDir.z > 0)
-            animator.SetBool("isForward", true);
-        else if (moveDir.x == +1)
-            animator.SetBool("isRightSide", true);
-        else if (moveDir.x == -1)
-            animator.SetBool("isLeftSide", true);
-        else if (moveDir.z < 0)
-            animator.SetBool("isBackward", true);
-
-        hipRigid.AddForce(Vector3.up * 40);
-        hipRigid.AddForce(forwardDir * speed * Time.fixedDeltaTime);
+        hipRigid.AddForce(Vector3.up * 100);
+        hipRigid.AddForce(speed * Time.fixedDeltaTime * moveDir);
     }
 }
