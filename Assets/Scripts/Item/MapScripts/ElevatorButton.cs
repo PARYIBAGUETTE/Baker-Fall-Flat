@@ -19,6 +19,7 @@ public class ElevatorButton : TriggerObject
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("ButtonClicked");
             Activate();
             //anim.SetTrigger("DoPress");
         }

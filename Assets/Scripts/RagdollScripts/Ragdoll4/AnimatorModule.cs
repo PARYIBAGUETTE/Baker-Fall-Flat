@@ -37,11 +37,8 @@ public class AnimatorModule : MonoBehaviour
     {
         for (int i = 0; i < _joints.Length; i++)
         {
-            ConfigurableJointExtensions.SetTargetRotationLocal(
-                _joints[i],
-                _animatedBones[i].localRotation,
-                _initialJointsRotation[i]
-            );
+            _joints[i].targetRotation =
+                Quaternion.Inverse(_animatedBones[i].localRotation) * _initialJointsRotation[i];
         }
     }
 }

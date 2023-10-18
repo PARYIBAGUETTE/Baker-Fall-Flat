@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - IgnoreMe
+  - Stairs
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,6 @@ TagManager:
   - UI
   - Character
   - NoSelfCollision
-  - 
   - 
   - 
   - 

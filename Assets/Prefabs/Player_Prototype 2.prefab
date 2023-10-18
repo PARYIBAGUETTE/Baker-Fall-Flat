@@ -579,7 +579,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885487739571980556}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b0155f7c0cad24150917338bb7c91d5a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -620,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035436810112561735}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.20035303, y: -0.2, z: 0.01040462}
+  m_LocalPosition: {x: 0.3, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -705,7 +705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113459179784444890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.20035303, y: -0.4, z: 0.01040462}
+  m_LocalPosition: {x: 0.3, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1679,7 +1679,7 @@ GameObject:
   - component: {fileID: 6830363928883149213}
   m_Layer: 6
   m_Name: pelvis
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2687,7 +2687,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5530423749623180760}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b0155f7c0cad24150917338bb7c91d5a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3897,11 +3897,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2936751931069445416}
+  - component: {fileID: 1870293430762203260}
   - component: {fileID: 3326679234175553418}
   - component: {fileID: 830892896913596731}
   - component: {fileID: 384591988757174495}
   - component: {fileID: 5676365675920892319}
-  - component: {fileID: 4037933587543510632}
+  - component: {fileID: 8801198497401988462}
   m_Layer: 0
   m_Name: Player_Prototype 2
   m_TagString: Untagged
@@ -3926,6 +3927,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &1870293430762203260
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213089086906967931}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3326679234175553418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3952,8 +3979,8 @@ MonoBehaviour:
   - {fileID: 3325549142524818647}
   - {fileID: 7572470453677969513}
   - {fileID: 9047567097422154210}
-  _animatedAnimator: {fileID: 9044186615226529468}
-  _physicalAnimator: {fileID: 8874997839297880616}
+  _animatedAnimator: {fileID: 8874997839297880616}
+  _physicalAnimator: {fileID: 9044186615226529468}
 --- !u!114 &830892896913596731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3966,8 +3993,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c36055c5b9124cc1a6331c7337d4331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hips: {fileID: 3649846549963291252}
+  camera: {fileID: 0}
   _activeRagdoll: {fileID: 3326679234175553418}
   _animatorModule: {fileID: 384591988757174495}
+  _movementModule: {fileID: 8801198497401988462}
+  moveSpeed: 5
+  speed: 10
+  moveDir: {x: 0, y: 0, z: 0}
+  forwardDir: {x: 0, y: 0, z: 0}
+  stepRayUpper: {fileID: 1035436810112561735}
+  stepRayLower: {fileID: 1113459179784444890}
+  stepHeight: 0.3
+  stepSmooth: 0.1
+  IsGround: 0
 --- !u!114 &384591988757174495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3995,7 +4034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrab: {fileID: 8886023435946530564}
   rightGrab: {fileID: 6352017375595164202}
---- !u!114 &4037933587543510632
+--- !u!114 &8801198497401988462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4004,22 +4043,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8213089086906967931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994f91b343a7b1449b22dca999b2e246, type: 3}
+  m_Script: {fileID: 11500000, guid: c578b8944a4ee4ac6b7d2ba7787b62c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  armsController: {fileID: 5676365675920892319}
-  hipjoint: {fileID: 8827978649423474244}
-  hipRigid: {fileID: 4359520283007494742}
-  animator: {fileID: 8874997839297880616}
-  speed: 100
-  moveDir: {x: 0, y: 0, z: 0}
-  forwardDir: {x: 0, y: 0, z: 0}
-  stepRayUpper: {fileID: 1035436810112561735}
-  stepRayLower: {fileID: 1113459179784444890}
-  stepHeight: 0.5
-  stepSmooth: 150
-  IsGround: 0
+  moveSpeed: 5
 --- !u!1 &8336815179816532176
 GameObject:
   m_ObjectHideFlags: 0
