@@ -45,6 +45,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 forwardDir;
 
+    [Header("Climb Stairs")]
+    [SerializeField]
+    private GameObject stepRayUpper;
+
+    [SerializeField]
+    private GameObject stepRayLower;
+
+    [SerializeField]
+    private float stepHeight = 0.3f;
+
+    [SerializeField]
+    private float stepSmooth = 0.1f;
+
     private void Awake()
     {
         // 임시 플레이어 인풋
@@ -52,11 +65,16 @@ public class PlayerController : MonoBehaviour
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
         Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
-        //
 
         playerAction.Move.started += GetMoveMentDir;
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
+
+        stepRayUpper.transform.position = new Vector3(
+            stepRayUpper.transform.position.x,
+            stepRayLower.transform.position.y + stepHeight,
+            stepRayUpper.transform.position.z
+        );
     }
 
     private void Start()
@@ -70,10 +88,81 @@ public class PlayerController : MonoBehaviour
         LookCameraDir();
         MovePlayer();
 
+        if (forwardDir == Vector3.forward)
+        {
+            StepClimb();
+        }
+
         //임시
         if (Input.GetKey(KeyCode.Space))
         {
             hipRigid.AddForce(Vector3.up * 300);
+        }
+    }
+
+    private void StepClimb()
+    {
+        if (
+            Physics.Raycast(
+                stepRayLower.transform.position,
+                transform.TransformDirection(Vector3.forward),
+                out RaycastHit hitLower,
+                0.1f
+            )
+        )
+        {
+            if (
+                !Physics.Raycast(
+                    stepRayUpper.transform.position,
+                    transform.TransformDirection(Vector3.forward),
+                    0.2f
+                ) && hitLower.collider.CompareTag("GameController")
+            )
+            {
+                hipRigid.AddForce(new Vector3(0f, stepSmooth, 0f), ForceMode.Impulse);
+            }
+        }
+
+        if (
+            Physics.Raycast(
+                stepRayLower.transform.position,
+                transform.TransformDirection(1.5f, 0, 1),
+                out RaycastHit hitLowerP45,
+                0.1f
+            )
+        )
+        {
+            if (
+                !Physics.Raycast(
+                    stepRayUpper.transform.position,
+                    transform.TransformDirection(1.5f, 0, 1),
+                    0.2f
+                ) && hitLowerP45.collider.CompareTag("GameController")
+            )
+            {
+                hipRigid.AddForce(new Vector3(0f, stepSmooth, 0f), ForceMode.Impulse);
+            }
+        }
+
+        if (
+            Physics.Raycast(
+                stepRayLower.transform.position,
+                transform.TransformDirection(-1.5f, 0, 1),
+                out RaycastHit hitLowerM45,
+                0.1f
+            )
+        )
+        {
+            if (
+                !Physics.Raycast(
+                    stepRayUpper.transform.position,
+                    transform.TransformDirection(-1.5f, 0, 1),
+                    0.2f
+                ) && hitLowerM45.collider.CompareTag("GameController")
+            )
+            {
+                hipRigid.AddForce(new Vector3(0f, stepSmooth, 0f), ForceMode.Impulse);
+            }
         }
     }
 
