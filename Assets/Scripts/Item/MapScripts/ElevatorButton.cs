@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorButton : TriggerObject
+public class ElevatorButton : TriggerObject
 {
     private Animator anim;
     private CapsuleCollider coll;
@@ -19,13 +19,8 @@ public class DoorButton : TriggerObject
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PRESSED!");
-            anim.SetBool("IsOpen", true);
+            Activate();
+            anim.SetTrigger("DoPress");
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Inactivate();
     }
 }
