@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class SlideDoor : MonoBehaviour, IWorkingObject
 {
-    private Rigidbody rigidbody;
+    private Rigidbody rigid;
+    private Animator anim;
+
     [SerializeField] private bool isLocked;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -18,7 +21,7 @@ public class SlideDoor : MonoBehaviour, IWorkingObject
         //isLocked 설정이라면 OpenDoor, CloseDoor 메소드를 실행시키는 트리거로만 문 여닫기가 가능해진다. 
         if (isLocked)
         {
-            rigidbody.isKinematic = true;
+            rigid.isKinematic = true;
         }
     }
 
@@ -35,6 +38,7 @@ public class SlideDoor : MonoBehaviour, IWorkingObject
     private void OpenDoor()
     {
         Debug.Log("Door Open!!!");
+        anim.SetTrigger("DoOpen");
         //문 열리는 애니메이션 실행
     }
 
