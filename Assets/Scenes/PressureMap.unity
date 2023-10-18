@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapObject_PressurePlate
       objectReference: {fileID: 0}
+    - target: {fileID: 5680523049504468909, guid: 48afb5a0e374f6b4da52cafc34a311b4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.53
+      objectReference: {fileID: 0}
     - target: {fileID: 7854539638698355689, guid: 48afb5a0e374f6b4da52cafc34a311b4,
         type: 3}
       propertyPath: m_RootOrder
@@ -207,7 +212,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh82294
+  m_Name: pb_Mesh41226
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -955,17 +960,17 @@ PrefabInstance:
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.02
+      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
@@ -1131,7 +1136,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh72734
+  m_Name: pb_Mesh41138
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1856,7 +1861,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh82250
+  m_Name: pb_Mesh41182
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2221,7 +2226,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh72790
+  m_Name: pb_Mesh41214
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3986,6 +3991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MapObject_SlideDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334775751328470355, guid: 5170059d6933fb643950d9baa4ffa512,
+        type: 3}
+      propertyPath: isLocked
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6400534508884538659, guid: 5170059d6933fb643950d9baa4ffa512,
         type: 3}
