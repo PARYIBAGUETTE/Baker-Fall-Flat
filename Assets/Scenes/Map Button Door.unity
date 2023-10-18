@@ -383,7 +383,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36830
+  m_Name: pb_Mesh33666
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1162,7 +1162,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36552
+  m_Name: pb_Mesh33582
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1815,7 +1815,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36630
+  m_Name: pb_Mesh33616
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2029,7 +2029,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36776
+  m_Name: pb_Mesh33640
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2545,10 +2545,12 @@ GameObject:
   - component: {fileID: 1086139899}
   - component: {fileID: 1086139902}
   - component: {fileID: 1086139901}
+  - component: {fileID: 1086139905}
   - component: {fileID: 1086139900}
+  - component: {fileID: 1086139904}
   - component: {fileID: 1086139903}
   m_Layer: 0
-  m_Name: ButtonDoor
+  m_Name: SlidingDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2640,7 +2642,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086139898}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &1086139903
+--- !u!114 &1086139903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086139898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690c5b74d3b7d2a468c8bfac3dc5f77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 1
+--- !u!95 &1086139904
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -2661,6 +2676,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &1086139905
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086139898}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 124
+  m_CollisionDetection: 0
 --- !u!1 &1130528544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,7 +4083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14aa0caea461004438395f3de791f192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animDoor: {fileID: 1086139903}
+  isActivate: 0
+  go: {fileID: 1086139898}
 --- !u!95 &1538030025
 Animator:
   serializedVersion: 5

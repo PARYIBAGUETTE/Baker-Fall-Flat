@@ -13,6 +13,7 @@ public class TriggerObject : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(go);
         workingObject = go.GetComponent<IWorkingObject>();
     }
 
