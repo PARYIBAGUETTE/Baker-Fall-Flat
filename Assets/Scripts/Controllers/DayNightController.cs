@@ -38,13 +38,13 @@ public class DayNightController : MonoBehaviour
         {
             case SkyBoxType.Day:
                 RenderSettings.skybox = day;
-                worldLight.colorTemperature = 4000;
-                worldLight.shadowStrength = 1.0f;
+                worldLight.colorTemperature = 5000;
+                worldLight.shadowStrength = 0.7f;
                 break;
             case SkyBoxType.Night:
                 RenderSettings.skybox = night;
                 worldLight.colorTemperature = 7300;
-                worldLight.shadowStrength = 0.6f;
+                worldLight.shadowStrength = 0.5f;
                 break;
         }
     }
