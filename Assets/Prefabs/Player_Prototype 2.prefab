@@ -579,7 +579,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885487739571980556}
-  m_Material: {fileID: 13400000, guid: b0155f7c0cad24150917338bb7c91d5a, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2687,7 +2687,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5530423749623180760}
-  m_Material: {fileID: 13400000, guid: b0155f7c0cad24150917338bb7c91d5a, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4012,13 +4012,14 @@ MonoBehaviour:
   hipjoint: {fileID: 8827978649423474244}
   hipRigid: {fileID: 4359520283007494742}
   animator: {fileID: 8874997839297880616}
-  speed: 40
+  speed: 100
   moveDir: {x: 0, y: 0, z: 0}
   forwardDir: {x: 0, y: 0, z: 0}
   stepRayUpper: {fileID: 1035436810112561735}
   stepRayLower: {fileID: 1113459179784444890}
-  stepHeight: 0.2
-  stepSmooth: 0.5
+  stepHeight: 0.5
+  stepSmooth: 150
+  IsGround: 0
 --- !u!1 &8336815179816532176
 GameObject:
   m_ObjectHideFlags: 0

@@ -452,8 +452,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219222222}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0003530216, y: 4.5299997, z: -10.010405}
+  m_LocalRotation: {x: 0.017646745, y: -0.7215644, z: 0.018403756, w: 0.69187766}
+  m_LocalPosition: {x: 4.994244, y: 1.7185265, z: 4.416817}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4041,46 +4041,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3972879918715686745, guid: 5ae1f9c5899b149e1ba31d921add1d54,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: b0155f7c0cad24150917338bb7c91d5a,
-        type: 2}
     - target: {fileID: 4037933587543510632, guid: 5ae1f9c5899b149e1ba31d921add1d54,
         type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 219222223}
-    - target: {fileID: 4037933587543510632, guid: 5ae1f9c5899b149e1ba31d921add1d54,
-        type: 3}
-      propertyPath: speed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037933587543510632, guid: 5ae1f9c5899b149e1ba31d921add1d54,
-        type: 3}
-      propertyPath: stepHeight
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037933587543510632, guid: 5ae1f9c5899b149e1ba31d921add1d54,
-        type: 3}
-      propertyPath: stepSmooth
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4501298484958476690, guid: 5ae1f9c5899b149e1ba31d921add1d54,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8213089086906967931, guid: 5ae1f9c5899b149e1ba31d921add1d54,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8827978649423474244, guid: 5ae1f9c5899b149e1ba31d921add1d54,
-        type: 3}
-      propertyPath: m_YMotion
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
