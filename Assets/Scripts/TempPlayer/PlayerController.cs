@@ -245,7 +245,9 @@ public class PlayerController : MonoBehaviour
     public void MovePlayer()
     {
         //hipRigid.AddForce(Vector3.up * 40);
-        cont.Move(speed * Time.fixedDeltaTime * moveDir);
+        Debug.Log(moveDir);
+
+        //cont.Move(speed * Time.fixedDeltaTime * moveDir);
     }
 
     private void TurnOption(InputAction.CallbackContext context)

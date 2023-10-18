@@ -33,8 +33,8 @@ public class DefaultBehavior : MonoBehaviour
     private CharacterController _controller;
 
     [SerializeField]
-    private float moveSpeed = 5.0f;
-    private Vector3 moveDirection;
+    private float moveSpeed = 5.0f; // << 여기 둘다 안쓰는 건데 확인 해주세요!
+    private Vector3 moveDirection; // <<<
 
     [SerializeField]
     private float speed = 10;
@@ -150,9 +150,8 @@ public class DefaultBehavior : MonoBehaviour
         right.y = 0;
         forword.Normalize();
         right.Normalize();
-        //Debug.Log(forwardDir);
 
-        forwardDir = forword * camera.transform.position.z + right * camera.transform.position.x;
+        forwardDir = (forword * moveDir.z + right * moveDir.x).normalized;
     }
 
     private void LookCameraDir()
@@ -166,6 +165,6 @@ public class DefaultBehavior : MonoBehaviour
 
     public void MovePlayer() 
     {
-        _controller.Move(moveDir * Time.fixedDeltaTime * speed);
+        _controller.Move(forwardDir * Time.fixedDeltaTime * speed);
     }
 }
