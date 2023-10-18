@@ -33,6 +33,7 @@ public class Elevator : MonoBehaviour, IWorkingObject
 
     private void WorkElevator()
     {
+        Debug.Log("Elevator Working");
         if (!isPressed) isPressed = true;
     }
 
