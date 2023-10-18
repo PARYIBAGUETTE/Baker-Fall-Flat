@@ -11,9 +11,8 @@ public class TriggerObject : MonoBehaviour
     [SerializeField] private GameObject go;
     private IWorkingObject workingObject;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        Debug.Log(go);
         workingObject = go.GetComponent<IWorkingObject>();
     }
 
@@ -32,7 +31,7 @@ public class TriggerObject : MonoBehaviour
         isActivate = true;
         if(workingObject != null)
         {
-            Debug.Log("Active!!!");
+            //Debug.Log("Active!!!");
             workingObject.DoWork();
         }
     }
@@ -42,7 +41,7 @@ public class TriggerObject : MonoBehaviour
         isActivate = false;
         if (workingObject != null)
         {
-            Debug.Log("Inactive!!!");
+            //Debug.Log("Inactive!!!");
             workingObject.UndoWork();
         }
     }
