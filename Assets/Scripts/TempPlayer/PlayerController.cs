@@ -97,7 +97,6 @@ public class PlayerController : MonoBehaviour
 
         if (moveDir == Vector3.forward)
         {
-            Debug.Log("check");
             StepClimb();
         }
 
@@ -127,6 +126,7 @@ public class PlayerController : MonoBehaviour
                 ) && hitLower.collider.CompareTag("Stairs")
             )
             {
+                Debug.Log("check");
                 hipRigid.AddForce(new Vector3(0f, stepSmooth, 0f), ForceMode.Impulse);
             }
         }

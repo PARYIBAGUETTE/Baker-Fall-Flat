@@ -36,6 +36,14 @@ public class ActiveRagdoll : MonoBehaviour
         get { return _animatedAnimator; }
         private set { _animatedAnimator = value; }
     }
+
+    [SerializeField]
+    private CharacterController _characterController;
+    public CharacterController CharacterController
+    {
+        get { return _characterController; }
+        private set { _characterController = value; }
+    }
     #endregion
 
     #region 인스펙터 창 세팅
@@ -68,10 +76,7 @@ public class ActiveRagdoll : MonoBehaviour
         {
             Joints = _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>();
         }
+
+        _characterController = GetComponent<CharacterController>();
     }
-
-    void Start() { }
-
-    // Update is called once per frame
-    void Update() { }
 }
