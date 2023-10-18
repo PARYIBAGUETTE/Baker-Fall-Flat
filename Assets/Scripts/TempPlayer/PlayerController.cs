@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
 
+        playerAction.Option.started += TurnOption;
+
         stepRayUpper.transform.position = new Vector3(
             stepRayUpper.transform.position.x,
             stepRayLower.transform.position.y + stepHeight,
@@ -240,5 +242,29 @@ public class PlayerController : MonoBehaviour
     {
         hipRigid.AddForce(Vector3.up * 40);
         hipRigid.AddForce(speed * Time.fixedDeltaTime * moveDir);
+    }
+
+    private void TurnOption(InputAction.CallbackContext context)
+    {
+        if (!UIManager.Instance.IsOpenUI<UIOption>())
+        {
+            UIManager.Instance.OpenUI<UIOption>();
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            UIManager.Instance.CloseUI<UIOption>();
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+        }
+
+        if (UIManager.Instance.IsOpenUI<UIAudio>())
+        {
+            UIManager.Instance.CloseUI<UIAudio>();
+            UIManager.Instance.CloseUI<UIOption>();
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+        }
     }
 }
