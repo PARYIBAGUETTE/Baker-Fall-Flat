@@ -70,13 +70,7 @@ public class ActiveRagdoll : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        foreach (ConfigurableJoint configurableJoint in Joints)
-        {
-            Debug.Log("configureJoint Name : " + configurableJoint.name);
-        }
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update() { }
