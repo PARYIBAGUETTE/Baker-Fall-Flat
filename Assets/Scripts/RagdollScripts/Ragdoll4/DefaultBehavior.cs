@@ -30,6 +30,9 @@ public class DefaultBehavior : MonoBehaviour
     private AnimatorModule _animatorModule;
 
     [SerializeField]
+    private CharacterController _controller;
+
+    [SerializeField]
     private float moveSpeed = 5.0f;
     private Vector3 moveDirection;
 
@@ -68,6 +71,8 @@ public class DefaultBehavior : MonoBehaviour
             _animatorModule = GetComponent<AnimatorModule>();
         }
     }
+
+
 
     private void Start()
     {
@@ -159,5 +164,8 @@ public class DefaultBehavior : MonoBehaviour
         _activeRagdoll.AnimatedTorso.transform.Rotate(Vector3.up * 90);
     }
 
-    public void MovePlayer() { }
+    public void MovePlayer() 
+    {
+        _controller.Move(moveDir * Time.fixedDeltaTime * speed);
+    }
 }
