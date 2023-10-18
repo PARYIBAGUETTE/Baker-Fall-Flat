@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 public class ItemObject : MonoBehaviour
 {
-    /// <summary>
-    /// 해당 아이템이 맵의 지정된 범위를 벗어났을 때 호출될 이벤트.
-    /// </summary>
-    public UnityEvent OnItemLost;
-
     [SerializeField] private ItemSO itemSO;
     [SerializeField] private bool isGrabbed;
     [SerializeField] private Vector3 spawnPoint;
