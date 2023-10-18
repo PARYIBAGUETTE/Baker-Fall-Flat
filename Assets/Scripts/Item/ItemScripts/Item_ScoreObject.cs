@@ -27,18 +27,18 @@ public class Item_ScoreObject : ItemObject
     }
 
     /// <summary>
-    /// �ش� ������Ʈ�� ��Ȱ��ȭ��Ű�� �÷��̾��� ���� ī��Ʈ ����
+    /// 해당 오브젝트를 비활성화시키고 플레이어의 점수 카운트 증가
     /// </summary>
     public new void OnPickUp()
     {
         
         gameObject.SetActive(false);
 
-        //�÷��̾��� ���� ī��Ʈ ����
+        //플레이어의 점수 카운트 증가 + 플레이어 스폰포인트 지정
     }
 
     /// <summary>
-    /// �ش� ������Ʈ�� ���Ʒ��� �����̰�, ȸ���ϵ��� �ϴ� �޼ҵ�
+    /// 해당 오브젝트가 위아래로 움직이고, 회전하도록 하는 메소드
     /// </summary>
     private void LevitateItem()
     {

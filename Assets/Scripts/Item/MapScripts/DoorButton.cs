@@ -28,8 +28,7 @@ public class DoorButton : TriggerObject
         if (other.CompareTag("Player"))
         {
             Debug.Log("PRESSED!");
-            anim.SetTrigger("DoPress");
-            //animDoor.SetTrigger("DoOpen");
+            anim.SetBool("IsOpen", true);
         }
     }
 
