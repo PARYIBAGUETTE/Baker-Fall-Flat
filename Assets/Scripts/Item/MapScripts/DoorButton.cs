@@ -19,13 +19,8 @@ public class DoorButton : TriggerObject
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PRESSED!");
-            anim.SetBool("IsOpen", true);
+            Activate();
+            //anim.SetBool("IsOpen", true);
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Inactivate();
     }
 }
