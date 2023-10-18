@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class SlideDoor : MonoBehaviour, IWorkingObject
 {
-    private Rigidbody rigid;
-    private Animator anim;
+    private enum Type { Button, Pressure }
 
-    [SerializeField] private bool isLocked;
+    private Vector3 start;
+    [SerializeField] private Transform goal;
+    [SerializeField] private Type type;
+    [SerializeField] private float moveSpeed;
+
+    private bool isPressed = false;
+    private bool isGoal = false;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        start = transform.position;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
-        //isLocked 설정이라면 OpenDoor, CloseDoor 메소드를 실행시키는 트리거로만 문 여닫기가 가능해진다. 
-        if (isLocked)
-        {
-            rigid.isKinematic = true;
-        }
+        MoveDoor();
     }
 
     void IWorkingObject.DoWork()
@@ -37,19 +36,34 @@ public class SlideDoor : MonoBehaviour, IWorkingObject
 
     private void OpenDoor()
     {
-        Debug.Log("Door Open!!!");
-        //anim.ResetTrigger("DoClose");
-        anim.SetBool("IsOpen", true);
-        //문 열리는 애니메이션 실행
-        anim.SetTrigger("DoOpen");
+        if (!isPressed) isPressed = true;
     }
 
     private void CloseDoor()
     {
-        Debug.Log("Door Close!!!");
-        anim.SetBool("IsOpen", false);
-        //문 닫히는 애니메이션 실행
+        if (isPressed) isPressed = false;
+    }
 
-        //anim.SetTrigger("DoClose");
+    private void MoveDoor()
+    {
+        switch (type)
+        {
+            case Type.Button:
+                if (isPressed)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, goal.position, Time.timeScale * moveSpeed);
+                }
+                break;
+            case Type.Pressure:
+                if (isPressed)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, goal.position, Time.timeScale * moveSpeed);
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, start, Time.timeScale * moveSpeed);
+                }
+                break;
+        }
     }
 }

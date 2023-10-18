@@ -20,7 +20,7 @@ public class ElevatorButton : TriggerObject
         if (other.CompareTag("Player"))
         {
             Activate();
-            anim.SetTrigger("DoPress");
+            //anim.SetTrigger("DoPress");
         }
     }
 }
