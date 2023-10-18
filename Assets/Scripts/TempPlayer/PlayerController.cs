@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float stepSmooth = 0.1f;
 
+    public bool IsGround = false;
+
     private void Awake()
     {
         // 임시 플레이어 인풋
@@ -65,7 +67,6 @@ public class PlayerController : MonoBehaviour
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
         Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
-
 
         playerAction.Move.started += GetMoveMentDir;
         playerAction.Move.performed += GetMoveMentDir;
@@ -92,8 +93,9 @@ public class PlayerController : MonoBehaviour
         SetDirFromCamera();
         MovePlayer();
 
-        if (forwardDir == Vector3.forward)
+        if (moveDir == Vector3.forward)
         {
+            Debug.Log("check");
             StepClimb();
         }
 
@@ -120,7 +122,7 @@ public class PlayerController : MonoBehaviour
                     stepRayUpper.transform.position,
                     transform.TransformDirection(Vector3.forward),
                     0.2f
-                ) && hitLower.collider.CompareTag("GameController")
+                ) && hitLower.collider.CompareTag("Stairs")
             )
             {
                 hipRigid.AddForce(new Vector3(0f, stepSmooth, 0f), ForceMode.Impulse);
@@ -141,7 +143,7 @@ public class PlayerController : MonoBehaviour
                     stepRayUpper.transform.position,
                     transform.TransformDirection(1.5f, 0, 1),
                     0.2f
-                ) && hitLowerP45.collider.CompareTag("GameController")
+                ) && hitLowerP45.collider.CompareTag("Stairs")
             )
             {
                 hipRigid.AddForce(new Vector3(0f, stepSmooth, 0f), ForceMode.Impulse);
@@ -162,7 +164,7 @@ public class PlayerController : MonoBehaviour
                     stepRayUpper.transform.position,
                     transform.TransformDirection(-1.5f, 0, 1),
                     0.2f
-                ) && hitLowerM45.collider.CompareTag("GameController")
+                ) && hitLowerM45.collider.CompareTag("Stairs")
             )
             {
                 hipRigid.AddForce(new Vector3(0f, stepSmooth, 0f), ForceMode.Impulse);
@@ -192,7 +194,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isRightSide", false);
             animator.SetBool("isLeftSide", false);
         }
-
         else if (moveDir.x == +1)
         {
             animator.SetBool("isRightSide", true);
@@ -237,7 +238,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
-        hipRigid.AddForce(Vector3.up * 100);
+        hipRigid.AddForce(Vector3.up * 40);
         hipRigid.AddForce(speed * Time.fixedDeltaTime * moveDir);
     }
 }
