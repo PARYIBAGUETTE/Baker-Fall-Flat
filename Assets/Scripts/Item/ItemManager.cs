@@ -16,8 +16,8 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    //ÇöÀç ¸ÊÀÇ ¸ğµç ¾ÆÀÌÅÛ Á¤º¸¸¦ º¸À¯ÇÑ´Ù. 
-    //¾ÆÀÌÅÛ°ú ¸Ê ¿ä¼ÒÀÇ Ãæµ¹, ´­¸² µîÀÇ »óÈ£ÀÛ¿ë ½Ã ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ ´Ù·é´Ù.
+    //í˜„ì¬ ë§µì˜ ëª¨ë“  ì•„ì´í…œ ì •ë³´ë¥¼ ë³´ìœ í•œë‹¤. 
+    //ì•„ì´í…œê³¼ ë§µ ìš”ì†Œì˜ ì¶©ëŒ, ëˆŒë¦¼ ë“±ì˜ ìƒí˜¸ì‘ìš© ì‹œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ë‹¤ë£¬ë‹¤.
 
     void Start()
     {
@@ -32,5 +32,10 @@ public class ItemManager : MonoBehaviour
     public void RemoveItem(ItemObject item)
     {
         items.Remove(item);
+    }
+
+    public void RespawnItem(ItemObject item)
+    {
+        item.gameObject.transform.position = item.SpawnPoint;
     }
 }

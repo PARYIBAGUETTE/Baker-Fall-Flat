@@ -38,7 +38,8 @@ public class SlideDoor : MonoBehaviour, IWorkingObject
     private void OpenDoor()
     {
         Debug.Log("Door Open!!!");
-
+        //anim.ResetTrigger("DoClose");
+        anim.SetBool("IsOpen", true);
         //문 열리는 애니메이션 실행
         anim.SetTrigger("DoOpen");
     }
@@ -46,6 +47,7 @@ public class SlideDoor : MonoBehaviour, IWorkingObject
     private void CloseDoor()
     {
         Debug.Log("Door Close!!!");
+        anim.SetBool("IsOpen", false);
         //문 닫히는 애니메이션 실행
 
         //anim.SetTrigger("DoClose");

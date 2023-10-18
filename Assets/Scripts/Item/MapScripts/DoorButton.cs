@@ -19,9 +19,13 @@ public class DoorButton : TriggerObject
     {
         if (other.CompareTag("Player"))
         {
-            Activate();
-            anim.SetTrigger("DoPress");
-            coll.enabled = false;
+            Debug.Log("PRESSED!");
+            anim.SetBool("IsOpen", true);
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Inactivate();
     }
 }
