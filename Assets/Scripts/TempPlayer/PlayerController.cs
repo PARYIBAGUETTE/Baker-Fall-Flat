@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
         PlayerAction.Enable();
         Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
 
+
         playerAction.Move.started += GetMoveMentDir;
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
@@ -80,12 +81,15 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         armsController.Init(this);
+        //jumpHandler.Init(this);
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
     {
-        SetDirFromCamera();
         LookCameraDir();
+        SetDirFromCamera();
         MovePlayer();
 
         if (forwardDir == Vector3.forward)
@@ -173,6 +177,40 @@ public class PlayerController : MonoBehaviour
         moveDir.z = moveDir.y;
         moveDir.y = 0;
         moveDir.Normalize();
+
+        if (moveDir == Vector3.zero)
+        {
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+            return;
+        }
+        else if (moveDir.z > 0)
+        {
+            animator.SetBool("isForward", true);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+        }
+
+        else if (moveDir.x == +1)
+        {
+            animator.SetBool("isRightSide", true);
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+        }
+        else if (moveDir.x == -1)
+        {
+            animator.SetBool("isLeftSide", true);
+            animator.SetBool("isForward", false);
+            animator.SetBool("isBackward", false);
+        }
+        else if (moveDir.z < 0)
+        {
+            animator.SetBool("isBackward", true);
+            animator.SetBool("isRightSide", false);
+            animator.SetBool("isLeftSide", false);
+        }
     }
 
     public void SetDirFromCamera()
@@ -183,8 +221,9 @@ public class PlayerController : MonoBehaviour
         right.y = 0;
         forword.Normalize();
         right.Normalize();
+        //Debug.Log(forwardDir);
 
-        forwardDir = forword * moveDir.z + right * moveDir.x;
+        forwardDir = forword * cam.transform.position.z + right * cam.transform.position.x;
     }
 
     private void LookCameraDir()
@@ -198,24 +237,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
-        if (moveDir == Vector3.zero)
-        {
-            animator.SetBool("isForward", false);
-            animator.SetBool("isBackward", false);
-            animator.SetBool("isRightSide", false);
-            animator.SetBool("isLeftSide", false);
-            return;
-        }
-        else if (moveDir.z > 0)
-            animator.SetBool("isForward", true);
-        else if (moveDir.x == +1)
-            animator.SetBool("isRightSide", true);
-        else if (moveDir.x == -1)
-            animator.SetBool("isLeftSide", true);
-        else if (moveDir.z < 0)
-            animator.SetBool("isBackward", true);
-
-        hipRigid.AddForce(Vector3.up * 30);
-        hipRigid.AddForce(forwardDir * speed);
+        hipRigid.AddForce(Vector3.up * 100);
+        hipRigid.AddForce(speed * Time.fixedDeltaTime * moveDir);
     }
 }
