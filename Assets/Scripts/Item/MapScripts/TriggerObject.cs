@@ -11,9 +11,8 @@ public class TriggerObject : MonoBehaviour
     [SerializeField] private GameObject go;
     private IWorkingObject workingObject;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        Debug.Log(go);
         workingObject = go.GetComponent<IWorkingObject>();
     }
 

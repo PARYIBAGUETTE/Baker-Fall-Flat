@@ -5,36 +5,23 @@ using UnityEngine;
 public class DoorButton : TriggerObject
 {
     private Animator anim;
-    //[SerializeField] private Animator animDoor;
+    private CapsuleCollider coll;
 
-    private void Awake()
+    protected override void Awake()
     {
-        anim = GetComponent<Animator>();
-    }
+        base.Awake();
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        anim.SetTrigger("DoPress");
-    //        animDoor.SetTrigger("DoOpen");
-    //    }
-    //}
+        anim = GetComponent<Animator>();
+        coll = GetComponent<CapsuleCollider>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Activate();
-
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PRESSED!");
+            Activate();
             anim.SetTrigger("DoPress");
-            //animDoor.SetTrigger("DoOpen");
+            coll.enabled = false;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Inactivate();
     }
 }
