@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class ItemObject : MonoBehaviour
 {
+    /// <summary>
+    /// í•´ë‹¹ ì•„ì´í…œì´ ë§µì˜ ì§€ì •ëœ ë²”ìœ„ë¥¼ ë²—ì–´ë‚¬ì„ ë•Œ í˜¸ì¶œë  ì´ë²¤íŠ¸.
+    /// </summary>
+    public UnityEvent OnItemLost;
+
     [SerializeField] private ItemSO itemSO;
     [SerializeField] private bool isGrabbed;
-    private Rigidbody rigidbody;
+    [SerializeField] private Vector3 spawnPoint;
+
+    private Rigidbody rigid;
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody>();
     }
 
     // Start is called before the first frame update
@@ -23,7 +32,13 @@ public class ItemObject : MonoBehaviour
         set { isGrabbed = value; }
     }
 
-    //ÇØ´ç ¾ÆÀÌÅÛÀ» Àâ¾ÒÀ» ¶§ ¼öÇàÇÒ ³»¿ë
+    public Vector3 SpawnPoint
+    {
+        get { return spawnPoint; }
+        set { spawnPoint = value; }
+    }
+
+    //í•´ë‹¹ ì•„ì´í…œì„ ì¡ì•˜ì„ ë•Œ ìˆ˜í–‰í•  ë‚´ìš©
     public void OnPickUp()
     {
         IsGrabbed = true;
