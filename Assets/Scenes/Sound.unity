@@ -160,8 +160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 1546970451}
   sfxSource: {fileID: 576636772}
-  bgmClips:
-  - {fileID: 8300000, guid: eb7f10105313640a18ce7926041a4d76, type: 3}
+  bgmClipsKeys: []
+  bgmClipsValues: []
+  sfxClipsKeys: []
+  sfxClipsValues: []
 --- !u!4 &94352973
 Transform:
   m_ObjectHideFlags: 0
@@ -177,7 +179,7 @@ Transform:
   - {fileID: 1546970452}
   - {fileID: 576636773}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &236071955
 GameObject:
@@ -1595,8 +1597,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 955968144}
-  m_Father: {fileID: 1987678652}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2029,6 +2031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3d491b661dc3b46a1816ea0fd972d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiStart: {fileID: 1476560674}
 --- !u!4 &1987678652
 Transform:
   m_ObjectHideFlags: 0
@@ -2041,13 +2044,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1476560679}
   - {fileID: 5884229440285960493}
   - {fileID: 1551851940}
   - {fileID: 1897266735}
   - {fileID: 36904544}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2009759406
 GameObject:

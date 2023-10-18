@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     private Dictionary<string, GameObject> _uiList = new Dictionary<string, GameObject>();
+
+    [SerializeField] private GameObject uiStart;
+
     private void Awake()
     {
         Instance = this;
@@ -22,8 +25,10 @@ public class UIManager : MonoBehaviour
         {
             var tr = transform.GetChild(i);
             _uiList.Add(tr.name, tr.gameObject);
-            if (i != 0) tr.gameObject.SetActive(false);
+            tr.gameObject.SetActive(false);
         }
+
+        if (uiStart != null) _uiList.Add(uiStart.name, uiStart);
     }
 
     public T OpenUI<T>()
@@ -37,5 +42,10 @@ public class UIManager : MonoBehaviour
     {
         var obj = _uiList[typeof(T).Name];
         obj.SetActive(false);
+    }
+
+    public bool IsOpenUI<T>()
+    {
+        return _uiList[typeof(T).Name].activeSelf;
     }
 }
