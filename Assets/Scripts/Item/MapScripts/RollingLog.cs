@@ -25,7 +25,7 @@ public class RollingLog : MonoBehaviour, IWorkingObject
 
     void IWorkingObject.UndoWork()
     {
-
+        ToggleRotating();
     }
 
     private void ToggleRotating()
@@ -39,7 +39,6 @@ public class RollingLog : MonoBehaviour, IWorkingObject
         if (isWorking)
         {
             gameObject.transform.Rotate(Vector3.up*2);
-
         }
     }
 }
