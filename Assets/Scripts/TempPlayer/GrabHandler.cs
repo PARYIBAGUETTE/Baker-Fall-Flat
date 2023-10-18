@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class GrabHandler : MonoBehaviour
 {
-    [SerializeField] private HingeJoint joint;
+    [SerializeField]
+    private HingeJoint joint;
     private Rigidbody grabObj;
-    [SerializeField] private Collider coll;
+
+    [SerializeField]
+    private Collider coll;
 
     public void StartGrabAction()
     {
@@ -25,5 +28,4 @@ public class GrabHandler : MonoBehaviour
         collision.gameObject.TryGetComponent(out grabObj);
         joint.connectedBody = grabObj;
     }
-
 }
