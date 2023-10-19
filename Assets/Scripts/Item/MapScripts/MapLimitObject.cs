@@ -14,7 +14,7 @@ public class MapLimitObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             PlayerRespawn pr = other.transform.GetComponent<PlayerRespawn>();
 

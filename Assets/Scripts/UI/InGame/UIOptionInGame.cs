@@ -18,13 +18,13 @@ public class UIOptionInGame : MonoBehaviour
 
     private void Open_Audio()
     {
-        UIManager.Instance.OpenUI<UIAudio>();
+        UIManager.Instance.OpenUI<UIAudioInGame>();
         this.gameObject.SetActive(false);
     }
 
     private void Close_Option()
     {
         this.gameObject.SetActive(false);
-        Time.timeScale = 1.0f;
+        UIManager.Instance.OpenUI<UIMenu>();
     }
 }
