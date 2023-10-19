@@ -26,6 +26,11 @@ public class DefaultBehavior : MonoBehaviour
     [Header("---Module---")]
     [SerializeField]
     private ActiveRagdoll _activeRagdoll;
+    public ActiveRagdoll ActiveRagdoll
+    {
+        get { return _activeRagdoll; }
+        private set { _activeRagdoll = value; }
+    }
 
     [SerializeField]
     private AnimatorModule _animatorModule;
@@ -40,6 +45,8 @@ public class DefaultBehavior : MonoBehaviour
         get { return _characterController; }
         private set { _characterController = value; }
     }
+    [SerializeField]
+    private ArmsController _armsController;
 
     [Header("---Value---")]
     [SerializeField]
@@ -75,6 +82,11 @@ public class DefaultBehavior : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
 
         _characterController = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        _armsController.Init(this);
     }
 
     private void OnEnable()
