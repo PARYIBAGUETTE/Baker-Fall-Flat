@@ -25,6 +25,6 @@ public class UIOptionInGame : MonoBehaviour
     private void Close_Option()
     {
         this.gameObject.SetActive(false);
-        Time.timeScale = 1.0f;
+        UIManager.Instance.OpenUI<UIMenu>();
     }
 }

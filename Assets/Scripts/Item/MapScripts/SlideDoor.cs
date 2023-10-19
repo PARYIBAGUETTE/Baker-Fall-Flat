@@ -12,7 +12,6 @@ public class SlideDoor : MonoBehaviour, IWorkingObject
     [SerializeField] private float moveSpeed;
 
     private bool isPressed = false;
-    private bool isGoal = false;
 
     private void Awake()
     {

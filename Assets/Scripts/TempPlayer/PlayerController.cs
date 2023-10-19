@@ -62,6 +62,27 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        //// 임시 플레이어 인풋
+        //PlayerInputAction = new PlayerInputAction();
+        //PlayerAction = PlayerInputAction.Player;
+        //PlayerAction.Enable();
+        //Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
+
+        //playerAction.Move.started += GetMoveMentDir;
+        //playerAction.Move.performed += GetMoveMentDir;
+        //playerAction.Move.canceled += GetMoveMentDir;
+
+        //playerAction.Option.started += TurnOption;
+
+        //stepRayUpper.transform.position = new Vector3(
+        //    stepRayUpper.transform.position.x,
+        //    stepRayLower.transform.position.y + stepHeight,
+        //    stepRayUpper.transform.position.z
+        //);
+    }
+
+    private void Start()
+    {
         // 임시 플레이어 인풋
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
@@ -79,10 +100,7 @@ public class PlayerController : MonoBehaviour
             stepRayLower.transform.position.y + stepHeight,
             stepRayUpper.transform.position.z
         );
-    }
 
-    private void Start()
-    {
         armsController.Init(this);
         //jumpHandler.Init(this);
 
@@ -246,15 +264,23 @@ public class PlayerController : MonoBehaviour
 
     private void TurnOption(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.IsOpenUI<UIOption>())
+        if (!UIManager.Instance.IsOpenUI<UIMenu>())
         {
-            UIManager.Instance.OpenUI<UIOption>();
+            UIManager.Instance.OpenUI<UIMenu>();
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
         }
         else
         {
-            UIManager.Instance.CloseUI<UIOption>();
+            UIManager.Instance.CloseUI<UIMenu>();
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+        }
+
+        if (UIManager.Instance.IsOpenUI<UIOptionInGame>())
+        {
+            UIManager.Instance.CloseUI<UIOptionInGame>();
+            UIManager.Instance.CloseUI<UIMenu>();
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
         }
@@ -262,7 +288,8 @@ public class PlayerController : MonoBehaviour
         if (UIManager.Instance.IsOpenUI<UIAudio>())
         {
             UIManager.Instance.CloseUI<UIAudio>();
-            UIManager.Instance.CloseUI<UIOption>();
+            UIManager.Instance.CloseUI<UIOptionInGame>();
+            UIManager.Instance.CloseUI<UIMenu>();
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
         }
