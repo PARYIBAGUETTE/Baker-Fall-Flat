@@ -69,32 +69,32 @@ public class Controller : MonoBehaviour
                 _rigidbody.AddForce(value * Time.fixedDeltaTime * 1000f, 0f, 0f);
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            leftHandTarget.localPosition = Vector3.Slerp(
-                defaultLeftHandTarget.localPosition,
-                aimLeftHandTarget.localPosition,
-                0.5f
-            );
-            Debug.Log("왼손!");
-        }
-        else
-        {
-            leftHandTarget.localPosition = defaultLeftHandTarget.localPosition;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            rightHandTarget.localPosition = Vector3.Slerp(
-                defaultRightHandTarget.localPosition,
-                aimRightHandTarget.localPosition,
-                0.5f
-            );
-            Debug.Log("오른손!");
-        }
-        else
-        {
-            rightHandTarget.localPosition = defaultRightHandTarget.localPosition;
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     leftHandTarget.localPosition = Vector3.Slerp(
+        //         defaultLeftHandTarget.localPosition,
+        //         aimLeftHandTarget.localPosition,
+        //         0.5f
+        //     );
+        //     Debug.Log("왼손!");
+        // }
+        // else
+        // {
+        //     leftHandTarget.localPosition = defaultLeftHandTarget.localPosition;
+        // }
+        // if (Input.GetMouseButtonDown(1))
+        // {
+        //     rightHandTarget.localPosition = Vector3.Slerp(
+        //         defaultRightHandTarget.localPosition,
+        //         aimRightHandTarget.localPosition,
+        //         0.5f
+        //     );
+        //     Debug.Log("오른손!");
+        // }
+        // else
+        // {
+        //     rightHandTarget.localPosition = defaultRightHandTarget.localPosition;
+        // }
     }
 
     private void OnCollisionEnter(Collision other)
