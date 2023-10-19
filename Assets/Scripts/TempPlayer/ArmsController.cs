@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,9 +15,9 @@ public class ArmsController : MonoBehaviour
     [SerializeField]
     private GrabHandler rightGrab;
 
-    public void Init(PlayerController controller)
+    public void Init(DefaultBehavior controller)
     {
-        animator = controller.Animator;
+        animator = controller.ActiveRagdoll.AnimatedAnimator;
         playerAction = controller.PlayerAction;
 
         DelInputEvent();
