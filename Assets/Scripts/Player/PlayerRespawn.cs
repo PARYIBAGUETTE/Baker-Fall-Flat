@@ -7,6 +7,7 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField] private Vector3 checkPoint = new Vector3(0, 5, 0);
 
     public static PlayerRespawn instance;
+    [SerializeField] GameObject player;
 
     private void Awake()
     {
@@ -20,6 +21,6 @@ public class PlayerRespawn : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        gameObject.transform.position = checkPoint;
+        player.transform.position = checkPoint;
     }
 }
