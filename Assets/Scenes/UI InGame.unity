@@ -2108,7 +2108,7 @@ GameObject:
   - component: {fileID: 613165990}
   - component: {fileID: 613165989}
   m_Layer: 5
-  m_Name: Button_Option
+  m_Name: Button_OptionInGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5789,7 +5789,7 @@ MonoBehaviour:
   btnResume: {fileID: 1717563758}
   btnRestart: {fileID: 88405678}
   btnLoadCheckPoint: {fileID: 1178662021}
-  btnOption: {fileID: 613165989}
+  btnOptionInGame: {fileID: 613165989}
   btnExit: {fileID: 299451574}
 --- !u!114 &1947765567
 MonoBehaviour:
@@ -5998,6 +5998,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e226a2fa9c6ee8c45b9ec2175cc16b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 1
+  bgmVolume: 1
+  sfxVolume: 1
   bgmSource: {fileID: 1560268442}
   sfxSource: {fileID: 1738665886}
   bgmClipsKeys:
@@ -7667,9 +7670,9 @@ GameObject:
   - component: {fileID: 1961631051399726521}
   - component: {fileID: 4600424245029932619}
   - component: {fileID: 6711693852374753902}
-  - component: {fileID: 6123223554126083532}
+  - component: {fileID: 6711693852374753903}
   m_Layer: 0
-  m_Name: UIAudio
+  m_Name: UIAudioInGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7943,19 +7946,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6123223554126083532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5047462376359243214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a426cfeadcefd4e8c04538579613ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  btnBack: {fileID: 1199956403740374034}
 --- !u!222 &6297695051709255303
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8237,6 +8227,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6711693852374753903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047462376359243214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90658eca9ee3d74c94de0ba8c3e720a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btnBack: {fileID: 1199956403740374034}
 --- !u!224 &6780391737856902922
 RectTransform:
   m_ObjectHideFlags: 0

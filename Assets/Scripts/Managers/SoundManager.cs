@@ -7,6 +7,10 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Insatance;
 
+    public float masterVolume;
+    public float bgmVolume;
+    public float sfxVolume;
+
     public AudioSource bgmSource;
     public AudioSource sfxSource;
 
@@ -55,7 +59,7 @@ public class SoundManager : MonoBehaviour
     {
         bgmSource.clip = clip;
         bgmSource.loop = true;
-        bgmSource.volume = 1f;
+        //bgmSource.volume = 1f;
         bgmSource.Play();
     }
 

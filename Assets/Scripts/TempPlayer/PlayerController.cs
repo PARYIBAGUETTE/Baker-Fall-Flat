@@ -278,9 +278,9 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        if (UIManager.Instance.IsOpenUI<UIAudio>())
+        if (UIManager.Instance.IsOpenUI<UIAudioInGame>())
         {
-            UIManager.Instance.CloseUI<UIAudio>();
+            UIManager.Instance.CloseUI<UIAudioInGame>();
             UIManager.Instance.CloseUI<UIOptionInGame>();
             UIManager.Instance.CloseUI<UIMenu>();
             Cursor.lockState = CursorLockMode.Locked;

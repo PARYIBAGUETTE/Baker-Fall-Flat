@@ -18,7 +18,7 @@ public class UIOptionInGame : MonoBehaviour
 
     private void Open_Audio()
     {
-        UIManager.Instance.OpenUI<UIAudio>();
+        UIManager.Instance.OpenUI<UIAudioInGame>();
         this.gameObject.SetActive(false);
     }
 

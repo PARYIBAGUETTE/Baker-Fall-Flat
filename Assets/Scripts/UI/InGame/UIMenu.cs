@@ -20,7 +20,7 @@ public class UIMenu : MonoBehaviour
         btnRestart.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnLoadCheckPoint.onClick.AddListener(LoadCheckPoint);
         btnLoadCheckPoint.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
-        btnOptionInGame.onClick.AddListener(Open_Option);
+        btnOptionInGame.onClick.AddListener(Open_OptionInGame);
         btnOptionInGame.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnExit.onClick.AddListener(Exit_Level);
         btnExit.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
@@ -43,7 +43,7 @@ public class UIMenu : MonoBehaviour
         return;
     }
 
-    private void Open_Option()
+    private void Open_OptionInGame()
     {
         UIManager.Instance.OpenUI<UIOptionInGame>();
         this.gameObject.SetActive(false);
