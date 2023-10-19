@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 11ae2aabc9682b64783e21b68c21b35c, type: 2}
   isGrabbed: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!33 &4176887093253693954
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
