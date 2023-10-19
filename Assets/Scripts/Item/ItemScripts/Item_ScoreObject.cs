@@ -27,13 +27,11 @@ public class Item_ScoreObject : ItemObject
     }
 
     /// <summary>
-    /// 해당 오브젝트를 비활성화시키고 플레이어의 점수 카운트 증가
+    /// 해당 오브젝트를 비활성화시키고 플레이어 스폰포인트 재지정
     /// </summary>
     public new void OnPickUp()
     {
         gameObject.SetActive(false);
-
-        //플레이어의 점수 카운트 증가 + 플레이어 스폰포인트 지정
 
     }
 
