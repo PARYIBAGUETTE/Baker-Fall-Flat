@@ -11,6 +11,18 @@ public class GrabHandler : MonoBehaviour
     [SerializeField]
     private Collider coll;
 
+    private void OnValidate()
+    {
+        if (joint == null)
+        {
+            joint = GetComponent<ConfigurableJoint>();
+        }
+        if (coll == null)
+        {
+            coll = GetComponent<Collider>();
+        }
+    }
+
     public void StartGrabAction()
     {
         coll.enabled = true;
