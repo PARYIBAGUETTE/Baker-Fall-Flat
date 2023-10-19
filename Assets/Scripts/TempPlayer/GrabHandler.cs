@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabHandler : MonoBehaviour
 {
     [SerializeField]
-    private HingeJoint joint;
+    private ConfigurableJoint joint;
     private Rigidbody grabObj;
 
     [SerializeField]
