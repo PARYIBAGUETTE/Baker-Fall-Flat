@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RollingLog : MonoBehaviour, IWorkingObject
 {
-    [SerializeField] private float moveSpeed = 0.01f;
+    //[SerializeField] private float moveSpeed = 0.01f;
     
     //true 라면 회전하는 상태가 된다.
     [SerializeField] private bool isWorking = true;
