@@ -22,7 +22,7 @@ public class ArmsController : MonoBehaviour
 
     public void Init(DefaultBehavior controller)
     {
-        animator = controller.ActiveRagdoll.AnimatedAnimator;
+        animator = controller.Animator;
         playerAction = controller.PlayerAction;
         AddInputEvent();
     }

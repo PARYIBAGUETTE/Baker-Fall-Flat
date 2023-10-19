@@ -4,41 +4,41 @@ using UnityEngine;
 
 public class AnimatorModule : MonoBehaviour
 {
-    [SerializeField]
-    protected ActiveRagdoll _activeRagdoll;
-    public ActiveRagdoll ActiveRagdoll
-    {
-        get { return _activeRagdoll; }
-    }
+    // [SerializeField]
+    // protected ActiveRagdoll _activeRagdoll;
+    // public ActiveRagdoll ActiveRagdoll
+    // {
+    //     get { return _activeRagdoll; }
+    // }
 
-    [Header("--- BODY ---")]
-    private Quaternion[] _initialJointsRotation;
-    private ConfigurableJoint[] _joints;
-    private Transform[] _animatedBones;
+    // [Header("--- BODY ---")]
+    // private Quaternion[] _initialJointsRotation;
+    // private ConfigurableJoint[] _joints;
+    // private Transform[] _animatedBones;
 
-    void Start()
-    {
-        _joints = _activeRagdoll.Joints;
-        _animatedBones = _activeRagdoll.AnimatedBones;
+    // void Start()
+    // {
+    //     _joints = _activeRagdoll.Joints;
+    //     _animatedBones = _activeRagdoll.AnimatedBones;
 
-        _initialJointsRotation = new Quaternion[_joints.Length];
-        for (int i = 0; i < _joints.Length; i++)
-        {
-            _initialJointsRotation[i] = _joints[i].transform.localRotation;
-        }
-    }
+    //     _initialJointsRotation = new Quaternion[_joints.Length];
+    //     for (int i = 0; i < _joints.Length; i++)
+    //     {
+    //         _initialJointsRotation[i] = _joints[i].transform.localRotation;
+    //     }
+    // }
 
-    void Update()
-    {
-        UpdateJointTargets();
-    }
+    // void Update()
+    // {
+    //     UpdateJointTargets();
+    // }
 
-    private void UpdateJointTargets()
-    {
-        for (int i = 0; i < _joints.Length; i++)
-        {
-            _joints[i].targetRotation =
-                Quaternion.Inverse(_animatedBones[i].localRotation) * _initialJointsRotation[i];
-        }
-    }
+    // private void UpdateJointTargets()
+    // {
+    //     for (int i = 0; i < _joints.Length; i++)
+    //     {
+    //         _joints[i].targetRotation =
+    //             Quaternion.Inverse(_animatedBones[i].localRotation) * _initialJointsRotation[i];
+    //     }
+    // }
 }

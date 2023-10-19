@@ -23,21 +23,6 @@ public class DefaultBehavior : MonoBehaviour
         private set { playerAction = value; }
     }
 
-    [Header("---Module---")]
-    [SerializeField]
-    private ActiveRagdoll _activeRagdoll;
-    public ActiveRagdoll ActiveRagdoll
-    {
-        get { return _activeRagdoll; }
-        private set { _activeRagdoll = value; }
-    }
-
-    [SerializeField]
-    private AnimatorModule _animatorModule;
-
-    [SerializeField]
-    private MovementModule _movementModule;
-
     [SerializeField]
     private CharacterController _characterController;
     public CharacterController CharacterController
@@ -49,6 +34,14 @@ public class DefaultBehavior : MonoBehaviour
     [SerializeField]
     private ArmsController _armsController;
 
+    [SerializeField]
+    private Animator _animator;
+    public Animator Animator
+    {
+        get { return _animator; }
+        private set { _animator = value; }
+    }
+
     [Header("---Value---")]
     [SerializeField]
     private Vector3 moveDir;
@@ -56,26 +49,21 @@ public class DefaultBehavior : MonoBehaviour
     [SerializeField]
     private Vector3 forwardDir;
 
-    public bool isGround = false;
-
     // 인스펙터 컴포넌트 할당
     private void OnValidate()
     {
-        if (_activeRagdoll == null)
-        {
-            _activeRagdoll = GetComponent<ActiveRagdoll>();
-        }
-        if (_animatorModule == null)
-        {
-            _animatorModule = GetComponent<AnimatorModule>();
-        }
-        if (_movementModule == null)
-        {
-            _movementModule = GetComponent<MovementModule>();
-        }
         if (_armsController == null)
         {
             _armsController = GetComponent<ArmsController>();
+        }
+        if (_animator == null)
+        {
+            _animator = GetComponent<Animator>();
+        }
+
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
         }
     }
 
@@ -84,9 +72,7 @@ public class DefaultBehavior : MonoBehaviour
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
-        Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
-
-        _characterController = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
@@ -100,7 +86,7 @@ public class DefaultBehavior : MonoBehaviour
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
 
-        playerAction.Option.started += TurnOption;
+        // playerAction.Option.started += TurnOption;
     }
 
     private void OnDisable()
@@ -109,20 +95,13 @@ public class DefaultBehavior : MonoBehaviour
         playerAction.Move.performed -= GetMoveMentDir;
         playerAction.Move.canceled -= GetMoveMentDir;
 
-        playerAction.Option.started -= TurnOption;
+        // playerAction.Option.started -= TurnOption;
     }
 
     private void FixedUpdate()
     {
-        LookCameraDir();
+        // LookCameraDir();
         SetDirFromCamera();
-        _movementModule.MoveTo(forwardDir);
-
-        //임시
-        if (Input.GetKey(KeyCode.Space))
-        {
-            _movementModule.JumpTo();
-        }
     }
 
     // Move 입력시 호출
@@ -132,39 +111,6 @@ public class DefaultBehavior : MonoBehaviour
         moveDir.z = moveDir.y;
         moveDir.y = 0;
         moveDir.Normalize();
-
-        if (moveDir == Vector3.zero)
-        {
-            _activeRagdoll.AnimatedAnimator.SetBool("isForward", false);
-            _activeRagdoll.AnimatedAnimator.SetBool("isBackward", false);
-            _activeRagdoll.AnimatedAnimator.SetBool("isRightSide", false);
-            _activeRagdoll.AnimatedAnimator.SetBool("isLeftSide", false);
-            return;
-        }
-        else if (moveDir.z > 0)
-        {
-            _activeRagdoll.AnimatedAnimator.SetBool("isForward", true);
-            _activeRagdoll.AnimatedAnimator.SetBool("isRightSide", false);
-            _activeRagdoll.AnimatedAnimator.SetBool("isLeftSide", false);
-        }
-        else if (moveDir.x == +1)
-        {
-            _activeRagdoll.AnimatedAnimator.SetBool("isRightSide", true);
-            _activeRagdoll.AnimatedAnimator.SetBool("isForward", false);
-            _activeRagdoll.AnimatedAnimator.SetBool("isBackward", false);
-        }
-        else if (moveDir.x == -1)
-        {
-            _activeRagdoll.AnimatedAnimator.SetBool("isLeftSide", true);
-            _activeRagdoll.AnimatedAnimator.SetBool("isForward", false);
-            _activeRagdoll.AnimatedAnimator.SetBool("isBackward", false);
-        }
-        else if (moveDir.z < 0)
-        {
-            _activeRagdoll.AnimatedAnimator.SetBool("isBackward", true);
-            _activeRagdoll.AnimatedAnimator.SetBool("isRightSide", false);
-            _activeRagdoll.AnimatedAnimator.SetBool("isLeftSide", false);
-        }
     }
 
     public void SetDirFromCamera()
@@ -179,45 +125,45 @@ public class DefaultBehavior : MonoBehaviour
         forwardDir = (forword * moveDir.z + right * moveDir.x).normalized;
     }
 
-    private void LookCameraDir()
-    {
-        Vector3 temp = camera.transform.position - _activeRagdoll.AnimatedTorso.transform.position;
-        temp.y = 0;
-        Quaternion dir = Quaternion.LookRotation(temp);
-        _activeRagdoll.AnimatedTorso.transform.rotation = dir;
-        _activeRagdoll.AnimatedTorso.transform.Rotate(Vector3.up * 90);
-    }
+    // private void LookCameraDir()
+    // {
+    //     Vector3 temp = camera.transform.position - transform.position;
+    //     temp.y = 0;
+    //     Quaternion dir = Quaternion.LookRotation(temp);
+    //     transform.rotation = dir;
+    //     transform.Rotate(Vector3.up);
+    // }
 
-    private void TurnOption(InputAction.CallbackContext context)
-    {
-        if (!UIManager.Instance.IsOpenUI<UIMenu>())
-        {
-            UIManager.Instance.OpenUI<UIMenu>();
-            Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            UIManager.Instance.CloseUI<UIMenu>();
-            Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
-        }
+    // private void TurnOption(InputAction.CallbackContext context)
+    // {
+    //     if (!UIManager.Instance.IsOpenUI<UIMenu>())
+    //     {
+    //         UIManager.Instance.OpenUI<UIMenu>();
+    //         Cursor.lockState = CursorLockMode.None;
+    //         Time.timeScale = 0f;
+    //     }
+    //     else
+    //     {
+    //         UIManager.Instance.CloseUI<UIMenu>();
+    //         Cursor.lockState = CursorLockMode.Locked;
+    //         Time.timeScale = 1f;
+    //     }
 
-        if (UIManager.Instance.IsOpenUI<UIOptionInGame>())
-        {
-            UIManager.Instance.CloseUI<UIOptionInGame>();
-            UIManager.Instance.CloseUI<UIMenu>();
-            Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
-        }
+    //     if (UIManager.Instance.IsOpenUI<UIOptionInGame>())
+    //     {
+    //         UIManager.Instance.CloseUI<UIOptionInGame>();
+    //         UIManager.Instance.CloseUI<UIMenu>();
+    //         Cursor.lockState = CursorLockMode.Locked;
+    //         Time.timeScale = 1f;
+    //     }
 
-        if (UIManager.Instance.IsOpenUI<UIAudioInGame>())
-        {
-            UIManager.Instance.CloseUI<UIAudioInGame>();
-            UIManager.Instance.CloseUI<UIOptionInGame>();
-            UIManager.Instance.CloseUI<UIMenu>();
-            Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
-        }
-    }
+    //     if (UIManager.Instance.IsOpenUI<UIAudioInGame>())
+    //     {
+    //         UIManager.Instance.CloseUI<UIAudioInGame>();
+    //         UIManager.Instance.CloseUI<UIOptionInGame>();
+    //         UIManager.Instance.CloseUI<UIMenu>();
+    //         Cursor.lockState = CursorLockMode.Locked;
+    //         Time.timeScale = 1f;
+    //     }
+    // }
 }

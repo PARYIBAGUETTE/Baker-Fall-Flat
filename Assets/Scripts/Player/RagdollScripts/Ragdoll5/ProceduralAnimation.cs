@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProceduralAnimation : MonoBehaviour
 {
-    /* Some useful functions we may need */
-
     static Vector3[] CastOnSurface(Vector3 point, float halfRange, Vector3 up)
     {
         Vector3[] res = new Vector3[2];
@@ -17,7 +15,6 @@ public class ProceduralAnimation : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 2f * halfRange, layerMask))
         {
-            Debug.Log("ray + " + hit.collider.name);
             res[0] = hit.point;
             res[1] = hit.normal;
         }
@@ -27,9 +24,6 @@ public class ProceduralAnimation : MonoBehaviour
         }
         return res;
     }
-
-    /*************************************/
-
 
     public Transform leftFootTarget;
     public Transform rightFootTarget;
@@ -44,7 +38,6 @@ public class ProceduralAnimation : MonoBehaviour
     public float angularSpeed = 0.1f;
     public float velocityMultiplier = 80f;
     public float bounceAmplitude = 0.05f;
-    public bool running = false;
 
     private Vector3 initLeftFootPos;
     private Vector3 initRightFootPos;
@@ -74,8 +67,6 @@ public class ProceduralAnimation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(gameObject.name + " + " + leftFootTarget.position);
-
         velocity = transform.position - lastBodyPos;
         velocity *= velocityMultiplier;
         velocity = (velocity + smoothness * lastVelocity) / (smoothness + 1f);
@@ -98,9 +89,6 @@ public class ProceduralAnimation : MonoBehaviour
         Vector3 desiredPositionRight = rightFootTarget.position;
 
         Vector3[] posNormLeft = CastOnSurface(desiredPositionLeft, 2f, Vector3.up);
-
-        Debug.Log(gameObject.name + " / posNormLeft[0] / " + posNormLeft[0]);
-        Debug.Log(gameObject.name + " / posNormLeft[1] / " + posNormLeft[1]);
 
         if (posNormLeft[0].y > desiredPositionLeft.y)
         {
@@ -141,13 +129,6 @@ public class ProceduralAnimation : MonoBehaviour
             Mathf.Abs(leftFootTargetRig.localPosition.z - rightFootTargetRig.localPosition.z)
                 / (stepLength / 4f)
         );
-
-        float heightReduction = running
-            ? Mathf.Clamp01(velocity.magnitude) * bounceAmplitude
-                - bounceAmplitude * Mathf.Clamp(velocity.magnitude, 0f, 10f) * feetDistance
-            : bounceAmplitude * Mathf.Clamp(velocity.magnitude, 0f, 10f) * feetDistance;
-        transform.localPosition = initBodyPos - heightReduction * Vector3.up;
-        scaler.localPosition = new Vector3(0f, heightReduction, 0f);
 
         lastBodyPos = transform.position;
     }
