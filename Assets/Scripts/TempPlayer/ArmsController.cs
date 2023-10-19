@@ -15,13 +15,20 @@ public class ArmsController : MonoBehaviour
     [SerializeField]
     private GrabHandler rightGrab;
 
+    private void OnEnable()
+    {
+        AddInputEvent();
+    }
+
+    private void OnDisable()
+    {
+        DelInputEvent();
+    }
+
     public void Init(DefaultBehavior controller)
     {
         animator = controller.ActiveRagdoll.AnimatedAnimator;
         playerAction = controller.PlayerAction;
-
-        DelInputEvent();
-        AddInputEvent();
     }
 
     private void AddInputEvent()
