@@ -16,9 +16,17 @@ public class MapLimitObject : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            OnPlayerLost?.Invoke();
-            other.transform.position = new Vector3(0,5,0);
-            //플레이어 스폰포인트로 이동시키는 메소드 호출
+            PlayerRespawn pr = other.transform.GetComponent<PlayerRespawn>();
+
+            if(pr != null)
+            {
+                OnPlayerLost?.Invoke();
+                pr.RespawnPlayer();
+            }
+            else
+            {
+                Debug.Log("Is not Player");
+            }
         }
         else
         {
