@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ActiveRagdoll : MonoBehaviour
@@ -66,7 +67,17 @@ public class ActiveRagdoll : MonoBehaviour
     {
         if (Joints == null)
         {
-            Joints = _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>();
+            // 개선 필요
+            var temp = _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>().ToList();
+            var List = new List<ConfigurableJoint>();
+            foreach (var joint in temp)
+            {
+                if (joint.gameObject.CompareTag("Player"))
+                    continue;
+
+                List.Add(joint);
+            }
+            Joints = List.ToArray();
         }
     }
 }
