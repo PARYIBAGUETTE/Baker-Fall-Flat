@@ -45,6 +45,7 @@ public class DefaultBehavior : MonoBehaviour
         get { return _characterController; }
         private set { _characterController = value; }
     }
+
     [SerializeField]
     private ArmsController _armsController;
 
@@ -71,6 +72,10 @@ public class DefaultBehavior : MonoBehaviour
         if (_movementModule == null)
         {
             _movementModule = GetComponent<MovementModule>();
+        }
+        if (_armsController == null)
+        {
+            _armsController = GetComponent<ArmsController>();
         }
     }
 
