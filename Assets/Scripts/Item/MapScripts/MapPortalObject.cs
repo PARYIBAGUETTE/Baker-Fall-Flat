@@ -2,44 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class NextMapPortalObject : MonoBehaviour
 {
-    [SerializeField] private int destination;
+    [SerializeField] private int destinationIndex;
     /// <summary>
     /// 해당 플레이어 캐릭터가 맵 이동 오브젝트와 충돌했을 때 호출될 이벤트. 
     /// 추후 필요한 동작을 추가할 수 있도록 해 두었음.
     /// </summary>
     [SerializeField] private UnityEvent OnNextMap;
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        //if (other.CompareTag("Player"))
+        //{
+        //    OnNextMap?.Invoke();
+        //    SceneManager.LoadScene(destinationIndex);
+        //}
+        if (other.transform.GetComponent<PlayerRespawn>() != null)
         {
-            PlayerRespawn pr = other.transform.GetComponent<PlayerRespawn>();
-
-            if (pr != null)
-            {
-                OnNextMap?.Invoke();
-                pr.RespawnPlayer();
-            }
-            else
-            {
-                Debug.Log("Is not Player");
-            }
+            OnNextMap?.Invoke();
+            SceneManager.LoadScene(destinationIndex);
         }
         else
         {
-            ItemObject item = other.transform.GetComponent<ItemObject>();
-            if (item != null)
-            {
-                OnItemLost?.Invoke();
-                ItemManager.instance.RespawnItem(item);
-            }
-            else
-            {
-                Debug.Log("Is not Item");
-            }
+            Debug.Log("Is not Player");
         }
     }
 }
