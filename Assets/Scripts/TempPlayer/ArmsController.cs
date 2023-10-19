@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,13 +15,20 @@ public class ArmsController : MonoBehaviour
     [SerializeField]
     private GrabHandler rightGrab;
 
+    private void OnEnable()
+    {
+        AddInputEvent();
+    }
+
+    private void OnDisable()
+    {
+        DelInputEvent();
+    }
+
     public void Init(PlayerController controller)
     {
         animator = controller.Animator;
         playerAction = controller.PlayerAction;
-
-        DelInputEvent();
-        AddInputEvent();
     }
 
     private void AddInputEvent()

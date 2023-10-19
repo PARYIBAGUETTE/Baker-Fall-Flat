@@ -35,6 +35,7 @@ public class UIMenu : MonoBehaviour
     private void Restart_Game()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1.0f;
     }
 
     private void LoadCheckPoint()

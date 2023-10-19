@@ -62,38 +62,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //// 임시 플레이어 인풋
-        //PlayerInputAction = new PlayerInputAction();
-        //PlayerAction = PlayerInputAction.Player;
-        //PlayerAction.Enable();
-        //Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
-
-        //playerAction.Move.started += GetMoveMentDir;
-        //playerAction.Move.performed += GetMoveMentDir;
-        //playerAction.Move.canceled += GetMoveMentDir;
-
-        //playerAction.Option.started += TurnOption;
-
-        //stepRayUpper.transform.position = new Vector3(
-        //    stepRayUpper.transform.position.x,
-        //    stepRayLower.transform.position.y + stepHeight,
-        //    stepRayUpper.transform.position.z
-        //);
-    }
-
-    private void Start()
-    {
         // 임시 플레이어 인풋
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
         Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
-
-        playerAction.Move.started += GetMoveMentDir;
-        playerAction.Move.performed += GetMoveMentDir;
-        playerAction.Move.canceled += GetMoveMentDir;
-
-        playerAction.Option.started += TurnOption;
 
         stepRayUpper.transform.position = new Vector3(
             stepRayUpper.transform.position.x,
@@ -102,9 +75,29 @@ public class PlayerController : MonoBehaviour
         );
 
         armsController.Init(this);
-        //jumpHandler.Init(this);
+    }
 
-        Cursor.lockState = CursorLockMode.Locked;
+    private void OnEnable()
+    {
+        playerAction.Move.started += GetMoveMentDir;
+        playerAction.Move.performed += GetMoveMentDir;
+        playerAction.Move.canceled += GetMoveMentDir;
+
+        playerAction.Option.started += TurnOption;
+    }
+
+    private void OnDisable()
+    {
+        playerAction.Move.started -= GetMoveMentDir;
+        playerAction.Move.performed -= GetMoveMentDir;
+        playerAction.Move.canceled -= GetMoveMentDir;
+
+        playerAction.Option.started -= TurnOption;
+    }
+
+    private void Start()
+    {
+        //jumpHandler.Init(this);
     }
 
     private void FixedUpdate()
