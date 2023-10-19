@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour
 {
@@ -59,6 +60,9 @@ public class PlayerController : MonoBehaviour
     private float stepSmooth = 0.1f;
 
     public bool IsGround = false;
+
+    [SerializeField]
+    private CharacterController cont;
 
     private void Awake()
     {
@@ -240,8 +244,10 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
-        hipRigid.AddForce(Vector3.up * 40);
-        hipRigid.AddForce(speed * Time.fixedDeltaTime * moveDir);
+        //hipRigid.AddForce(Vector3.up * 40);
+        Debug.Log(moveDir);
+
+        //cont.Move(speed * Time.fixedDeltaTime * moveDir);
     }
 
     private void TurnOption(InputAction.CallbackContext context)
