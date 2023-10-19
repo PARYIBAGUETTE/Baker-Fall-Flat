@@ -9,20 +9,24 @@ public class UIStart : MonoBehaviour
     [SerializeField] private Button btnStart;
     [SerializeField] private Button btnOption;
     [SerializeField] private Button btnCustomize;
+    [SerializeField] private Button btnQuit;
 
     private void Awake()
     {
-        btnStart.onClick.AddListener(GameStart);
+        btnStart.onClick.AddListener(Open_Select);
         btnStart.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnOption.onClick.AddListener(Open_Option);
         btnOption.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
         btnCustomize.onClick.AddListener(Open_Customize);
         btnCustomize.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
+        btnQuit.onClick.AddListener(Quit_Game);
+        btnQuit.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
     }
 
-    private void GameStart()
+    private void Open_Select()
     {
-        SceneManager.LoadScene("UI"); // temporary
+        UIManager.Instance.OpenUI<UISelect>();
+        this.gameObject.SetActive(false);
     }
 
     private void Open_Option()
@@ -35,5 +39,10 @@ public class UIStart : MonoBehaviour
     {
         UIManager.Instance.OpenUI<UICustomize>();
         this.gameObject.SetActive(false);
+    }
+
+    private void Quit_Game()
+    {
+        Application.Quit();
     }
 }

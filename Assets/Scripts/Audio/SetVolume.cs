@@ -12,8 +12,9 @@ public class SetVolume : MonoBehaviour
 
     private void Start()
     {
-        sliderBGM.value = SoundManager.Insatance.bgmSource.volume;
-        sliderSFX.value = SoundManager.Insatance.sfxSource.volume;
+        sliderMaster.value = SoundManager.Insatance.masterVolume;
+        sliderBGM.value = SoundManager.Insatance.bgmVolume;
+        sliderSFX.value = SoundManager.Insatance.sfxVolume;
         sliderMaster.onValueChanged.AddListener(Set_MasterVolume);
         sliderBGM.onValueChanged.AddListener(Set_BGMVolume);
         sliderSFX.onValueChanged.AddListener(Set_SFXVolume);
@@ -21,6 +22,7 @@ public class SetVolume : MonoBehaviour
 
     private void Set_MasterVolume(float sliderVal)
     {
+        SoundManager.Insatance.masterVolume = sliderVal;
         SoundManager.Insatance.bgmSource.volume = sliderVal * sliderBGM.value;
         SoundManager.Insatance.sfxSource.volume = sliderVal * sliderSFX.value;
 
@@ -29,6 +31,7 @@ public class SetVolume : MonoBehaviour
 
     private void Set_BGMVolume(float sliderVal)
     {
+        SoundManager.Insatance.bgmVolume = sliderVal;
         SoundManager.Insatance.bgmSource.volume = sliderVal * sliderMaster.value;
 
         SoundManager.Insatance.SfxPlay("Button");
@@ -36,6 +39,7 @@ public class SetVolume : MonoBehaviour
 
     private void Set_SFXVolume(float sliderVal)
     {
+        SoundManager.Insatance.sfxVolume = sliderVal;
         SoundManager.Insatance.sfxSource.volume = sliderVal * sliderMaster.value;
 
         SoundManager.Insatance.SfxPlay("Button");

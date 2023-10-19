@@ -99,6 +99,8 @@ public class DefaultBehavior : MonoBehaviour
         playerAction.Move.started += GetMoveMentDir;
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
+
+        playerAction.Option.started += TurnOption;
     }
 
     private void OnDisable()
@@ -106,6 +108,8 @@ public class DefaultBehavior : MonoBehaviour
         playerAction.Move.started -= GetMoveMentDir;
         playerAction.Move.performed -= GetMoveMentDir;
         playerAction.Move.canceled -= GetMoveMentDir;
+
+        playerAction.Option.started -= TurnOption;
     }
 
     private void FixedUpdate()
@@ -182,5 +186,38 @@ public class DefaultBehavior : MonoBehaviour
         Quaternion dir = Quaternion.LookRotation(temp);
         _activeRagdoll.AnimatedTorso.transform.rotation = dir;
         _activeRagdoll.AnimatedTorso.transform.Rotate(Vector3.up * 90);
+    }
+
+    private void TurnOption(InputAction.CallbackContext context)
+    {
+        if (!UIManager.Instance.IsOpenUI<UIMenu>())
+        {
+            UIManager.Instance.OpenUI<UIMenu>();
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            UIManager.Instance.CloseUI<UIMenu>();
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+        }
+
+        if (UIManager.Instance.IsOpenUI<UIOptionInGame>())
+        {
+            UIManager.Instance.CloseUI<UIOptionInGame>();
+            UIManager.Instance.CloseUI<UIMenu>();
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+        }
+
+        if (UIManager.Instance.IsOpenUI<UIAudioInGame>())
+        {
+            UIManager.Instance.CloseUI<UIAudioInGame>();
+            UIManager.Instance.CloseUI<UIOptionInGame>();
+            UIManager.Instance.CloseUI<UIMenu>();
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+        }
     }
 }
