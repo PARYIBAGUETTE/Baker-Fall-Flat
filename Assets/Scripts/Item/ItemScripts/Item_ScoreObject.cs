@@ -26,15 +26,10 @@ public class Item_ScoreObject : ItemObject
         LevitateItem();
     }
 
-    /// <summary>
-    /// 해당 오브젝트를 비활성화시키고 플레이어의 점수 카운트 증가
-    /// </summary>
     public new void OnPickUp()
     {
-        
         gameObject.SetActive(false);
-
-        //플레이어의 점수 카운트 증가 + 플레이어 스폰포인트 지정
+        PlayerRespawn.instance.SetCheckPoint(gameObject.transform.position);
     }
 
     /// <summary>
@@ -73,5 +68,17 @@ public class Item_ScoreObject : ItemObject
         //        isUp = true;
         //    }
         //}
+    }
+
+    /// <summary>
+    /// 해당 오브젝트를 비활성화시키고 플레이어 스폰포인트 재지정
+    /// </summary>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+            PlayerRespawn.instance.SetCheckPoint(gameObject.transform.position);
+        }
     }
 }

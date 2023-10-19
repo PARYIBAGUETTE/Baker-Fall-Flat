@@ -25,9 +25,9 @@ public class ArmsController : MonoBehaviour
         DelInputEvent();
     }
 
-    public void Init(PlayerController controller)
+    public void Init(DefaultBehavior controller)
     {
-        animator = controller.Animator;
+        animator = controller.ActiveRagdoll.AnimatedAnimator;
         playerAction = controller.PlayerAction;
     }
 

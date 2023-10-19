@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class DefaultBehavior : MonoBehaviour
 {
+    [Header("---Camera---")]
     [SerializeField]
     private new Camera camera;
 
@@ -22,41 +23,42 @@ public class DefaultBehavior : MonoBehaviour
         private set { playerAction = value; }
     }
 
-    [Header("Modules")]
+    [Header("---Module---")]
     [SerializeField]
     private ActiveRagdoll _activeRagdoll;
+    public ActiveRagdoll ActiveRagdoll
+    {
+        get { return _activeRagdoll; }
+        private set { _activeRagdoll = value; }
+    }
 
     [SerializeField]
     private AnimatorModule _animatorModule;
 
     [SerializeField]
-    private float moveSpeed = 5.0f;
-    private Vector3 moveDirection;
+    private MovementModule _movementModule;
 
     [SerializeField]
-    private float speed = 10;
+    private CharacterController _characterController;
+    public CharacterController CharacterController
+    {
+        get { return _characterController; }
+        private set { _characterController = value; }
+    }
 
+    [SerializeField]
+    private ArmsController _armsController;
+
+    [Header("---Value---")]
     [SerializeField]
     private Vector3 moveDir;
 
     [SerializeField]
     private Vector3 forwardDir;
 
-    [Header("Climb Stairs")]
-    [SerializeField]
-    private GameObject stepRayUpper;
+    public bool isGround = false;
 
-    [SerializeField]
-    private GameObject stepRayLower;
-
-    [SerializeField]
-    private float stepHeight = 0.3f;
-
-    [SerializeField]
-    private float stepSmooth = 0.1f;
-
-    public bool IsGround = false;
-
+    // 인스펙터 컴포넌트 할당
     private void OnValidate()
     {
         if (_activeRagdoll == null)
@@ -67,31 +69,55 @@ public class DefaultBehavior : MonoBehaviour
         {
             _animatorModule = GetComponent<AnimatorModule>();
         }
+        if (_movementModule == null)
+        {
+            _movementModule = GetComponent<MovementModule>();
+        }
+        if (_armsController == null)
+        {
+            _armsController = GetComponent<ArmsController>();
+        }
     }
 
-    private void Start()
+    private void Awake()
     {
-        // 임시 플레이어 인풋
         PlayerInputAction = new PlayerInputAction();
         PlayerAction = PlayerInputAction.Player;
         PlayerAction.Enable();
         Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
 
+        _characterController = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        _armsController.Init(this);
+    }
+
+    private void OnEnable()
+    {
         playerAction.Move.started += GetMoveMentDir;
         playerAction.Move.performed += GetMoveMentDir;
         playerAction.Move.canceled += GetMoveMentDir;
+    }
+
+    private void OnDisable()
+    {
+        playerAction.Move.started -= GetMoveMentDir;
+        playerAction.Move.performed -= GetMoveMentDir;
+        playerAction.Move.canceled -= GetMoveMentDir;
     }
 
     private void FixedUpdate()
     {
         LookCameraDir();
         SetDirFromCamera();
-        MovePlayer();
+        _movementModule.MoveTo(forwardDir);
 
         //임시
         if (Input.GetKey(KeyCode.Space))
         {
-            _activeRagdoll.PhysicalTorso.AddForce(Vector3.up * 300);
+            _movementModule.JumpTo();
         }
     }
 
@@ -145,9 +171,8 @@ public class DefaultBehavior : MonoBehaviour
         right.y = 0;
         forword.Normalize();
         right.Normalize();
-        //Debug.Log(forwardDir);
 
-        forwardDir = forword * camera.transform.position.z + right * camera.transform.position.x;
+        forwardDir = (forword * moveDir.z + right * moveDir.x).normalized;
     }
 
     private void LookCameraDir()
@@ -158,6 +183,4 @@ public class DefaultBehavior : MonoBehaviour
         _activeRagdoll.AnimatedTorso.transform.rotation = dir;
         _activeRagdoll.AnimatedTorso.transform.Rotate(Vector3.up * 90);
     }
-
-    public void MovePlayer() { }
 }

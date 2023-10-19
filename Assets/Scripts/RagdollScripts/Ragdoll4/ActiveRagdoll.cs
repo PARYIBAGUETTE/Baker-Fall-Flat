@@ -9,13 +9,13 @@ public class ActiveRagdoll : MonoBehaviour
     [Header("--- BODY ---")]
     [SerializeField]
     private Transform _animatedTorso;
-
-    [SerializeField]
-    private Rigidbody _physicalTorso;
     public Transform AnimatedTorso
     {
         get { return _animatedTorso; }
     }
+
+    [SerializeField]
+    private Rigidbody _physicalTorso;
     public Rigidbody PhysicalTorso
     {
         get { return _physicalTorso; }
@@ -27,10 +27,6 @@ public class ActiveRagdoll : MonoBehaviour
     [Header("--- ANIMATORS ---")]
     [SerializeField]
     private Animator _animatedAnimator;
-
-    [SerializeField]
-    private Animator _physicalAnimator;
-
     public Animator AnimatedAnimator
     {
         get { return _animatedAnimator; }
@@ -38,12 +34,8 @@ public class ActiveRagdoll : MonoBehaviour
     }
 
     [SerializeField]
-    private CharacterController _characterController;
-    public CharacterController CharacterController
-    {
-        get { return _characterController; }
-        private set { _characterController = value; }
-    }
+    private Animator _physicalAnimator;
+
     #endregion
 
     #region 인스펙터 창 세팅
@@ -76,7 +68,5 @@ public class ActiveRagdoll : MonoBehaviour
         {
             Joints = _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>();
         }
-
-        _characterController = GetComponent<CharacterController>();
     }
 }
