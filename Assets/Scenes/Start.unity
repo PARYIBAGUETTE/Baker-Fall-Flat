@@ -1530,6 +1530,7 @@ MonoBehaviour:
   btnStart: {fileID: 481598555}
   btnOption: {fileID: 1002296688}
   btnCustomize: {fileID: 505327994}
+  btnQuit: {fileID: 1928266183}
 --- !u!114 &1476560676
 MonoBehaviour:
   m_ObjectHideFlags: 0

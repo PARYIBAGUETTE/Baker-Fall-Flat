@@ -13,7 +13,7 @@ public class UISelect : MonoBehaviour
     {
         for (int i = 0; i < btnMaps.Length; i++)
         {
-            btnMaps[i].onClick.AddListener(() => Load_Maps(i - 1));
+            btnMaps[i].onClick.AddListener(() => Load_Maps(i));
         }
 
         btnBack.onClick.AddListener(Close_Select);
