@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ActiveRagdoll : MonoBehaviour
 {
-    #region 변수
+#region 변수
     [Header("--- BODY ---")]
     [SerializeField]
     private Transform _animatedTorso;
@@ -23,7 +23,12 @@ public class ActiveRagdoll : MonoBehaviour
     }
 
     public Transform[] AnimatedBones;
-    public ConfigurableJoint[] Joints { get; private set; }
+
+    [SerializeField] ConfigurableJoint[] joint;
+    public ConfigurableJoint[] Joints 
+    { 
+        get { return joint; } 
+    }
 
     [Header("--- ANIMATORS ---")]
     [SerializeField]
@@ -63,21 +68,21 @@ public class ActiveRagdoll : MonoBehaviour
     }
     #endregion
 
-    private void Awake()
-    {
-        if (Joints == null)
-        {
-            // 개선 필요
-            var temp = _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>().ToList();
-            var List = new List<ConfigurableJoint>();
-            foreach (var joint in temp)
-            {
-                if (joint.gameObject.CompareTag("Player"))
-                    continue;
+    //private void Awake()
+    //{
+    //    //if (Joints == null)
+    //    //{
+    //    //    // 개선 필요
+    //    //    var temp = _physicalTorso?.GetComponentsInChildren<ConfigurableJoint>().ToList();
+    //    //    var List = new List<ConfigurableJoint>();
+    //    //    foreach (var joint in temp)
+    //    //    {
+    //    //        if (joint.gameObject.CompareTag("Player"))
+    //    //            continue;
 
-                List.Add(joint);
-            }
-            Joints = List.ToArray();
-        }
-    }
+    //    //        List.Add(joint);
+    //    //    }
+    //    //    Joints = List.ToArray();
+    //    //}
+    //}
 }
