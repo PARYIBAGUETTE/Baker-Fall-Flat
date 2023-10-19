@@ -11,10 +11,13 @@ public class UISelect : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < btnMaps.Length; i++)
-        {
-            btnMaps[i].onClick.AddListener(() => Load_Maps(i));
-        }
+        //for (int i = 0; i < btnMaps.Length; i++)
+        //{
+        //    btnMaps[i].onClick.AddListener(() => Load_Maps(i + 1));
+        //}
+
+        btnMaps[0].onClick.AddListener(() => Load_Maps(1));
+        btnMaps[1].onClick.AddListener(() => Load_Maps(2));
 
         btnBack.onClick.AddListener(Close_Select);
         btnBack.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
