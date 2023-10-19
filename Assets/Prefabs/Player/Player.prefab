@@ -2224,6 +2224,18 @@ MonoBehaviour:
   - {fileID: 100434777755308171}
   - {fileID: 5441021184474358884}
   - {fileID: 5974021749849756205}
+  joint:
+  - {fileID: 3678575983342050102}
+  - {fileID: 8712107755663333657}
+  - {fileID: 6396050506351613820}
+  - {fileID: 4877531835818148728}
+  - {fileID: 4900950772138083937}
+  - {fileID: 5164689854138964770}
+  - {fileID: 4811971456811232019}
+  - {fileID: 6531363218823047919}
+  - {fileID: 1440406053894487231}
+  - {fileID: 5376640235588006838}
+  - {fileID: 603264591659930936}
   _animatedAnimator: {fileID: 7529141570622924601}
   _physicalAnimator: {fileID: 4951448880244456074}
 --- !u!95 &4951448880244456074
@@ -2260,7 +2272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 3
+  jumpForce: 2
 --- !u!1 &2909584861176261239
 GameObject:
   m_ObjectHideFlags: 0
