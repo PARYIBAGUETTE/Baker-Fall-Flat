@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Map Button Door.unity
-    guid: c4855677d80ed7545a9cfbe5a3848c00
+    path: Assets/Scenes/Start.unity
+    guid: 8e8d6faa24caa614a888adcd5e34212d
+  - enabled: 1
+    path: Assets/Scenes/Map01.unity
+    guid: 82ee099f70e864eb1b0a3b9c1f9b06f8
   m_configObjects: {}
