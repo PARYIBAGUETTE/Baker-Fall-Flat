@@ -24,6 +24,7 @@ public class NextMapPortalObject : MonoBehaviour
         {
             OnNextMap?.Invoke();
             SceneManager.LoadScene(destinationIndex);
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
