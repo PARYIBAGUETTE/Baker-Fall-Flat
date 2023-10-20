@@ -1,3 +1,5 @@
+![](https://velog.velcdn.com/images/jwn7003/post/087ecc6c-19b2-472c-b761-8ea5b991ee59/image.png)
+
 # Baker-Fall-Flat
 
 ## 🖥️ 프로젝트 소개
@@ -16,6 +18,7 @@ Unity 3D 게임 개발 심화 프로젝트
 ## 📌 주요 기능
 
 ### 플레이어
+* 5번까지 존재하는 다양한 프로토타입이 존재
 * 플레이어블 캐릭터 구현
 * Input System을 활용한 키보드 동작 구현
 * 다리 힘과 허리 힘으로 움직이는 래그돌 구현
