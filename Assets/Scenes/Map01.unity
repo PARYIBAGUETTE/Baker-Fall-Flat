@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1697,8 +1697,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1209326693202476042, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
+      propertyPath: spawnPoint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209326693202476042, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
+        type: 3}
       propertyPath: spawnPoint.y
-      value: 3
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209326693202476042, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
+        type: 3}
+      propertyPath: spawnPoint.z
+      value: 51.5
       objectReference: {fileID: 0}
     - target: {fileID: 6492434577475720734, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
@@ -1713,17 +1723,17 @@ PrefabInstance:
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7996469
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5793629
+      value: -2.31
       objectReference: {fileID: 0}
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 51.6
+      value: 51.5
       objectReference: {fileID: 0}
     - target: {fileID: 8691853053149233697, guid: 9e4b08092a40f1b4694aabf51c94dfe3,
         type: 3}
@@ -4476,7 +4486,7 @@ PrefabInstance:
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
       propertyPath: m_Size.x
-      value: 11.833699
+      value: 17.785324
       objectReference: {fileID: 0}
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
@@ -4491,7 +4501,7 @@ PrefabInstance:
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
       propertyPath: m_Center.x
-      value: -4.173639
+      value: -3.858023
       objectReference: {fileID: 0}
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
