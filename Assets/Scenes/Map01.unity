@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d59f4e2666cee478861c76bb2a00b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPoint: {x: 0, y: 5, z: 0}
+  checkPoint: {x: 0, y: 20, z: 0}
   player: {fileID: 150019765}
 --- !u!65 &150019775
 BoxCollider:
@@ -2031,7 +2031,7 @@ PrefabInstance:
     - target: {fileID: 5216889238080954179, guid: 4116aec9fa8bc469786b0564a3e9c83e,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5387085321775981869, guid: 4116aec9fa8bc469786b0564a3e9c83e,
         type: 3}
@@ -4470,7 +4470,7 @@ PrefabInstance:
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.0025382
+      value: 3.4042811
       objectReference: {fileID: 0}
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
@@ -4485,12 +4485,12 @@ PrefabInstance:
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
       propertyPath: m_Center.y
-      value: -1.303913
+      value: -1.5047834
       objectReference: {fileID: 0}
     - target: {fileID: 1846351528950579750, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.81054115
+      value: 0.81054133
       objectReference: {fileID: 0}
     - target: {fileID: 2470982533142589863, guid: 4033e6fbf743c6d48a6f7269c5fc9d6a,
         type: 3}
@@ -8490,7 +8490,7 @@ PrefabInstance:
     - target: {fileID: 842616240095208591, guid: f21a74f310d3f40f2b59939992278b95,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.53
+      value: -11.2
       objectReference: {fileID: 0}
     - target: {fileID: 842616240095208591, guid: f21a74f310d3f40f2b59939992278b95,
         type: 3}
@@ -8547,6 +8547,11 @@ PrefabInstance:
       propertyPath: MapLimitObject
       value: 
       objectReference: {fileID: 557022478}
+    - target: {fileID: 4007117606298886944, guid: f21a74f310d3f40f2b59939992278b95,
+        type: 3}
+      propertyPath: destinationIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4909547868402802186, guid: f21a74f310d3f40f2b59939992278b95,
         type: 3}
       propertyPath: m_Name

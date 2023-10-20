@@ -18,7 +18,7 @@ public class UISelect : MonoBehaviour
 
         btnMaps[0].onClick.AddListener(() => Load_Maps(1));
         btnMaps[1].onClick.AddListener(() => Load_Maps(2));
-
+        
         btnBack.onClick.AddListener(Close_Select);
         btnBack.onClick.AddListener(() => SoundManager.Insatance.SfxPlay("Button"));
     }
